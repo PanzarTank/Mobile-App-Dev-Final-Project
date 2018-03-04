@@ -12,6 +12,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.shelterconnect.R;
+import com.example.shelterconnect.controller.Items.CreateItemActivity;
+import com.example.shelterconnect.controller.Items.ReadItemActivity;
 
 public class HomePage extends AppCompatActivity {
 
@@ -35,7 +37,25 @@ public class HomePage extends AppCompatActivity {
         goToItemListButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), ItemListActivity.class);
+                Intent myIntent = new Intent(view.getContext(), ReadItemActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+        Button addItem = (Button) findViewById(R.id.addItemButton);
+        addItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), CreateItemActivity.class);
+                startActivity(myIntent);
+            }
+        });
+
+        Button loginPageButton = (Button) findViewById(R.id.loginPageButton);
+        loginPageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent myIntent = new Intent(view.getContext(), LoginActivity.class);
                 startActivity(myIntent);
             }
         });

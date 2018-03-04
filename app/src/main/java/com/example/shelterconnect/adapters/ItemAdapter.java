@@ -35,10 +35,15 @@ public class ItemAdapter extends ArrayAdapter<Item> {
                 currentView = vi.inflate(R.layout.item_list_item, null);
             }
 
-            TextView itemName = (TextView) currentView.findViewById(R.id.textItemName);
+            TextView itemName = (TextView) currentView.findViewById(R.id.name);
             itemName.setText(currItem.getName());
-            TextView itemPrice = (TextView) currentView.findViewById(R.id.textItemPrice);
-            itemPrice.setText(Double.toString(currItem.getPrice()));
+            TextView itemPrice = (TextView) currentView.findViewById(R.id.price);
+
+            String itemPriceText = "$"+Double.toString(currItem.getPrice());
+            itemPrice.setText(itemPriceText);
+
+            TextView itemQuantity = (TextView) currentView.findViewById(R.id.quantity);
+            itemQuantity.setText(Integer.toString(currItem.getQuantity()));
 
         } catch (Exception e) {
             e.printStackTrace();

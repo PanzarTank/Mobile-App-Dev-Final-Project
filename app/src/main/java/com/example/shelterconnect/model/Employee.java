@@ -12,8 +12,8 @@ public class Employee {
     private String email;
     private String password;
 
-    public Employee(int employeeID, String name, int position, String email, String password){
-        if(employeeID < 0 || name == null || position < 1 || email == null || password == null){
+    public Employee(int employeeID, String name, int position, String email, String password) {
+        if (employeeID < 0 || name == null || position < 1 || email == null || password == null) {
             throw new IllegalArgumentException("Invalid input");
         }
         this.employeeID = employeeID;

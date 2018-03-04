@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1081597694999",
+    "firebase_url": "https://shelterconnect-bc631.firebaseio.com",
+    "project_id": "shelterconnect-bc631",
+    "storage_bucket": "shelterconnect-bc631.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081597694999:android:f7fda92d9b4821b1",
+        "android_client_info": {
+          "package_name": "com.example.shelterconnect"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081597694999-jc6gprjeg00of9f7d3eqgl20n435mpla.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shelterconnect",
+            "certificate_hash": "e22db5a58a7eb7bc5d1bbccc9dfd7d3b191fd335"
+          }
+        },
+        {
+          "client_id": "1081597694999-9sav0k06e8852tfceml1v1oe9dqj07ki.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEw8_npAQyilWThrL3U-AtYl5GFw5crgw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081597694999-9sav0k06e8852tfceml1v1oe9dqj07ki.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

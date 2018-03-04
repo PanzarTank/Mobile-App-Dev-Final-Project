@@ -7,10 +7,10 @@ package com.example.shelterconnect.database;
 
 public class Api {
 
-    private static final String ROOT_URL = "http://codd.cs.gsu.edu/~dburkhart1/Api.php?apicall=";
-
     public static final int CODE_GET_REQUEST = 1024;
     public static final int CODE_POST_REQUEST = 1025;
+    private static final String ROOT_URL = "http://codd.cs.gsu.edu/~dburkhart1/Api.php?apicall=";
+    public static final String URL_LOGIN = ROOT_URL + "login&";
 
     public static final String URL_CREATE_ITEM = ROOT_URL + "createitem";
     public static final String URL_READ_ITEMS = ROOT_URL + "getitems";

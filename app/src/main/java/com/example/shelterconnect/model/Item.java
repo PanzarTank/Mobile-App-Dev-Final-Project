@@ -4,28 +4,29 @@ package com.example.shelterconnect.model;
  * Item object for model
  * Created by daniel on 2/12/18.
  */
-
 public class Item {
 
     private int itemID;
     private String name;
     private double price;
+    private int quantity;
 
-    public Item(int itemID, String name, double price){
-        if(itemID < 0 || name == null || price < 0.0){
+    public Item(int itemID, String name, double price, int quantity) {
+        if (itemID < 0 || name == null || price < 0.0 || quantity < 0) {
             throw new IllegalArgumentException("Invalid input");
         }
 
         this.itemID = itemID;
         this.name = name;
         this.price = price;
+        this.quantity = quantity;
     }
 
-    public int getItemID(){
+    public int getItemID() {
         return itemID;
     }
 
-    public void setItemID(int itemID){
+    public void setItemID(int itemID) {
         this.itemID = itemID;
     }
 
@@ -43,5 +44,13 @@ public class Item {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

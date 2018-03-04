@@ -25,7 +25,6 @@ public class RequestHandler {
     public String sendPostRequest(String requestURL,
                                   HashMap<String, String> postDataParams) {
         URL url;
-
         StringBuilder sb = new StringBuilder();
         try {
 
@@ -48,8 +47,8 @@ public class RequestHandler {
             writer.flush();
             writer.close();
             os.close();
-            int responseCode = conn.getResponseCode();
 
+            int responseCode = conn.getResponseCode();
             if (responseCode == HttpsURLConnection.HTTP_OK) {
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
@@ -64,6 +63,7 @@ public class RequestHandler {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         return sb.toString();
     }
 
@@ -99,6 +99,7 @@ public class RequestHandler {
             result.append(URLEncoder.encode(entry.getValue(), "UTF-8"));
         }
 
+        System.out.println(result.toString());
         return result.toString();
     }
 }

@@ -1,10 +1,9 @@
-package com.example.shelterconnect.controller;
+package com.example.shelterconnect.controller.Items;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.adapters.ItemAdapter;
@@ -19,12 +18,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ItemListActivity extends AppCompatActivity {
+public class ReadItemActivity extends AppCompatActivity {
 
 
+    ArrayList<Item> itemList;
     private ListView myListView;
-
-    ArrayList<Item> itemList = new ArrayList<Item>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +31,7 @@ public class ItemListActivity extends AppCompatActivity {
 
         this.myListView = (ListView) findViewById(R.id.itemList);
 
-        this.itemList = new ArrayList<Item>();
+        this.itemList = new ArrayList<>();
 
         readItems();
     }
@@ -54,13 +52,12 @@ public class ItemListActivity extends AppCompatActivity {
             itemList.add(new Item(
                     obj.getInt("itemID"),
                     obj.getString("name"),
-                    obj.getDouble("price")
-
+                    obj.getDouble("price"),
+                    obj.getInt("quantity")
             ));
         }
 
         ItemAdapter adapter = new ItemAdapter(this, this.itemList);
-
         this.myListView.setAdapter(adapter);
     }
 
@@ -87,7 +84,6 @@ public class ItemListActivity extends AppCompatActivity {
                 JSONObject object = new JSONObject(s);
 
                 if (!object.getBoolean("error")) {
-                    Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
                     refreshItemList(object.getJSONArray("items"));
                 }
 
