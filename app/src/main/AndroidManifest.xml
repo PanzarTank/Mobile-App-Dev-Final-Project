@@ -36,14 +36,17 @@
             android:name=".controller.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity android:name=".controller.ClosedRequestsActivity" />
-        <activity android:name=".controller.Items.ReadItemActivity" />
-        <activity android:name=".controller.Items.CreateItemActivity" />
+        <activity android:name=".controller.items.ReadItemActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity android:name=".controller.items.CreateItemActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".controller.items.UpdateItemActivity" android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name=".controller.NewRequestActivity" />
         <activity android:name=".controller.MakeDonationActivity" />
         <activity android:name=".controller.ReceiveItemActivity" />
         <activity android:name=".controller.WorkerListActivity" />
         <activity android:name=".controller.MyDonationsActivity" />
-        <activity android:name=".controller.Items.UpdateItemActivity"></activity>
     </application>
 
 </manifest>

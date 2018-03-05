@@ -10,6 +10,7 @@ public class Item {
     private String name;
     private double price;
     private int quantity;
+    private boolean edited;
 
     public Item(int itemID, String name, double price, int quantity) {
         if (itemID < 0 || name == null || price < 0.0 || quantity < 0) {
@@ -20,6 +21,7 @@ public class Item {
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+        this.edited = false;
     }
 
     public int getItemID() {
@@ -52,5 +54,13 @@ public class Item {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public boolean hasBeenEdited(){
+        return this.edited;
+    }
+
+    public void setEdited(boolean newVal){
+        this.edited = newVal;
     }
 }

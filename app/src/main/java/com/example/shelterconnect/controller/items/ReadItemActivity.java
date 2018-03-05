@@ -1,9 +1,14 @@
-package com.example.shelterconnect.controller.Items;
+package com.example.shelterconnect.controller.items;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.adapters.ItemAdapter;
@@ -29,11 +34,46 @@ public class ReadItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("ITEMS");
+        toolbar.setSubtitle("");
+
         this.myListView = (ListView) findViewById(R.id.itemList);
 
         this.itemList = new ArrayList<>();
 
         readItems();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_items, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.addItem) {
+            Toast.makeText(this, "Action clicked", Toast.LENGTH_LONG).show();
+
+            Intent myIntent = new Intent(this, CreateItemActivity.class);
+            startActivity(myIntent);
+
+            return true;
+
+        } else if (id == R.id.editItems) {
+            Intent myIntent = new Intent(this, UpdateItemActivity.class);
+            startActivity(myIntent);
+
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private void readItems() {
