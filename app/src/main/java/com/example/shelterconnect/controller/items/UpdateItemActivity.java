@@ -128,7 +128,7 @@ public class UpdateItemActivity extends AppCompatActivity {
             ));
         }
 
-        ItemEditAdapter adapter = new ItemEditAdapter(this.itemList);
+        ItemEditAdapter adapter = new ItemEditAdapter(this.itemList, this);
         this.rv.setAdapter(adapter);
     }
 
