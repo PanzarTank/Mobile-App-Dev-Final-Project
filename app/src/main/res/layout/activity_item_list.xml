@@ -16,48 +16,40 @@
         app:theme="@style/ToolBarStyle"
         app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-    <TableLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:background="@android:color/darker_gray"
+        android:orientation="horizontal"
+        android:padding="5dp">
 
-        <TableRow
-            android:id="@+id/columnHeaders"
+        <TextView
+            android:id="@+id/textViewNameLabel"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#c0c0c0"
-            android:orientation="horizontal">
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Name"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
-            <TextView
-                android:id="@+id/textViewNameLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:padding="5dp"
-                android:text="Name" />
+        <TextView
+            android:id="@+id/textViewPriceLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Price"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
-            <TextView
-                android:id="@+id/textViewPriceLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Price" />
+        <TextView
+            android:id="@+id/textViewQuantityLabel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Quantity"
+            android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+    </LinearLayout>
 
-            <TextView
-                android:id="@+id/textViewQuantityLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Quantity" />
 
-            <TextView
-                android:id="@+id/textViewActionLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Action"
-                android:visibility="invisible" />
-
-        </TableRow>
 
         <ListView
             android:id="@+id/itemList"
@@ -67,6 +59,6 @@
 
         </ListView>
 
-    </TableLayout>
+
 
 </LinearLayout>

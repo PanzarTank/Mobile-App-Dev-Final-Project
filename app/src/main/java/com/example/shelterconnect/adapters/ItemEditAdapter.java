@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shelterconnect.R;
+import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.items.UpdateItemActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
@@ -154,6 +157,9 @@ public class ItemEditAdapter extends RecyclerView.Adapter<ItemEditAdapter.ItemVi
                 JSONObject object = new JSONObject(s);
                 if (!object.getBoolean("error")) {
                     Toast.makeText(adapterContext, "Delete Successful!", Toast.LENGTH_LONG).show();
+                    Intent myInent = new Intent(adapterContext, ReadItemActivity.class);
+                    AppCompatActivity app = new AppCompatActivity();
+                    app.startActivity(myInent);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -183,6 +189,7 @@ public class ItemEditAdapter extends RecyclerView.Adapter<ItemEditAdapter.ItemVi
                     public void onClick(DialogInterface dialog, int id) {
                         System.out.println("DELETING ITEM!!!");
                         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_ITEM + currItem.getItemID(), null, Api.CODE_GET_REQUEST);
+                        System.out.println(Api.URL_DELETE_ITEM+currItem.getItemID());
                         request.execute();
                     }
                 })

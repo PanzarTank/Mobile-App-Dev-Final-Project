@@ -10,12 +10,11 @@ public class Api {
     public static final int CODE_GET_REQUEST = 1024;
     public static final int CODE_POST_REQUEST = 1025;
     private static final String ROOT_URL = "http://codd.cs.gsu.edu/~dburkhart1/Api.php?apicall=";
-    public static final String URL_LOGIN = ROOT_URL + "login&";
 
     public static final String URL_CREATE_ITEM = ROOT_URL + "createitem";
     public static final String URL_READ_ITEMS = ROOT_URL + "getitems";
     public static final String URL_UPDATE_ITEM = ROOT_URL + "updateitem";
-    public static final String URL_DELETE_ITEM = ROOT_URL + "deleteitem&id=";
+    public static final String URL_DELETE_ITEM = ROOT_URL + "deleteitem&itemID=";
 
     public static final String URL_CREATE_EMPLOYEE = ROOT_URL + "createworker";
     public static final String URL_READ_EMPLOYEE = ROOT_URL + "getworkers";

@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.adapters.ItemAdapter;
@@ -58,18 +57,19 @@ public class ReadItemActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-        if (id == R.id.addItem) {
-            Toast.makeText(this, "Action clicked", Toast.LENGTH_LONG).show();
+        if(id == R.id.listItems){
+            Intent myIntent = new Intent(this, ReadItemActivity.class);
+            startActivity(myIntent);
+            return true;
 
+        } else if (id == R.id.addItem) {
             Intent myIntent = new Intent(this, CreateItemActivity.class);
             startActivity(myIntent);
-
             return true;
 
         } else if (id == R.id.editItems) {
             Intent myIntent = new Intent(this, UpdateItemActivity.class);
             startActivity(myIntent);
-
             return true;
         }
 

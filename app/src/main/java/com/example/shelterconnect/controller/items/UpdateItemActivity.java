@@ -12,7 +12,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.adapters.ItemEditAdapter;
@@ -75,9 +74,18 @@ public class UpdateItemActivity extends AppCompatActivity {
 
         int id = item.getItemId();
 
-        if (id == R.id.addItem) {
-            Toast.makeText(this, "Action clicked", Toast.LENGTH_LONG).show();
+        if(id == R.id.listItems){
+            Intent myIntent = new Intent(this, ReadItemActivity.class);
+            startActivity(myIntent);
+            return true;
+
+        } else if (id == R.id.addItem) {
             Intent myIntent = new Intent(this, CreateItemActivity.class);
+            startActivity(myIntent);
+            return true;
+
+        } else if (id == R.id.editItems) {
+            Intent myIntent = new Intent(this, UpdateItemActivity.class);
             startActivity(myIntent);
             return true;
         }
