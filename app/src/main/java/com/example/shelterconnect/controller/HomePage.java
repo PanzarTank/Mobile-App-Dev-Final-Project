@@ -13,7 +13,7 @@ import com.example.shelterconnect.R;
 import com.example.shelterconnect.controller.items.CreateItemActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
 
-public class HomePage extends AppCompatActivity {
+public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,32 +22,25 @@ public class HomePage extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        Button goToItemListButton = (Button) findViewById(R.id.itemList);
-        goToItemListButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), ReadItemActivity.class);
-                startActivity(myIntent);
-            }
-        });
+        findViewById(R.id.goItemList).setOnClickListener(this);
+        findViewById(R.id.goAddItem).setOnClickListener(this);
+        findViewById(R.id.goLoginPage).setOnClickListener(this);
+    }
 
-        Button addItem = (Button) findViewById(R.id.addItemButton);
-        addItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), CreateItemActivity.class);
-                startActivity(myIntent);
-            }
-        });
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()) {
+            case R.id.goItemList:
+                startActivity(new Intent(this, ReadItemActivity.class));
 
-        Button loginPageButton = (Button) findViewById(R.id.loginPageButton);
-        loginPageButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(view.getContext(), LoginActivity.class);
-                startActivity(myIntent);
-            }
-        });
+                break;
+            case R.id.goAddItem:
+                startActivity(new Intent(this, CreateItemActivity.class));
+
+                break;
+            case R.id.goLoginPage:
+                startActivity(new Intent(this, LoginActivity.class));
+        }
     }
 
     @Override

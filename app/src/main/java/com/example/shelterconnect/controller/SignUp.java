@@ -74,7 +74,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         }
 
         //Check for password verification
-        if(password != vPassword) {
+        if(!password.equals(vPassword)) {
             signInPassword.setError("Passwords do not match");
             signInPassword.requestFocus();
             return;
