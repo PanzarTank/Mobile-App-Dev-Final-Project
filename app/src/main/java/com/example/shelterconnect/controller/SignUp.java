@@ -17,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
-    EditText signInEmail, signInPassword;
+    EditText signInEmail, signInPassword, userName, userPhone, userAddress, verifyPassword;
 
     private FirebaseAuth mAuth;
 
@@ -28,6 +28,11 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         signInEmail = findViewById(R.id.signInEmail);
         signInPassword = findViewById(R.id.signInPassword);
+        userName = findViewById(R.id.signup_name);
+        userPhone = findViewById(R.id.signup_phone);
+        userAddress = findViewById(R.id.signup_address);;
+        verifyPassword = findViewById(R.id.signup_vpassword);
+
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -38,6 +43,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private void registerUser() {
         String email = signInEmail.getText().toString().trim();
         String password = signInPassword.getText().toString().trim();
+        String vPassword  = verifyPassword.getText().toString().trim();
 
         //Check if email is empty
         if (email.isEmpty()) {
@@ -67,11 +73,18 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
+        //Check for password verification
+        if(password != vPassword) {
+            signInPassword.setError("Passwords do not match");
+            signInPassword.requestFocus();
+            return;
+        }
+
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    Toast.makeText(getApplicationContext(), "User Registrered Successfully", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "User Registered Successfully", Toast.LENGTH_SHORT).show();
 
                 }
             }
