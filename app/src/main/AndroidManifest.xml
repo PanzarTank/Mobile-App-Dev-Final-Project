@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".controller.HomePage"
+            android:name=".controller.LoginActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -30,23 +30,23 @@
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.SignUpWorkerActivity" />
-        <activity android:name=".controller.SignUpDonorActivity" />
         <activity android:name=".controller.OpenRequestsActivity" />
-        <activity
-            android:name=".controller.LoginActivity"
-            android:label="@string/title_activity_login" />
         <activity android:name=".controller.ClosedRequestsActivity" />
-        <activity android:name=".controller.items.ReadItemActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".controller.items.CreateItemActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.items.UpdateItemActivity" android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity
+            android:name=".controller.items.ReadItemActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.items.CreateItemActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.items.UpdateItemActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.NewRequestActivity" />
         <activity android:name=".controller.MakeDonationActivity" />
         <activity android:name=".controller.ReceiveItemActivity" />
         <activity android:name=".controller.WorkerListActivity" />
         <activity android:name=".controller.MyDonationsActivity" />
+        <activity android:name=".controller.SignUp"></activity>
     </application>
 
 </manifest>

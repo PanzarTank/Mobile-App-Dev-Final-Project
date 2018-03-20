@@ -1,35 +1,35 @@
 {
   "project_info": {
-    "project_number": "1081597694999",
-    "firebase_url": "https://shelterconnect-bc631.firebaseio.com",
-    "project_id": "shelterconnect-bc631",
-    "storage_bucket": "shelterconnect-bc631.appspot.com"
+    "project_number": "530695232479",
+    "firebase_url": "https://mobile-apps-shelter-project.firebaseio.com",
+    "project_id": "mobile-apps-shelter-project",
+    "storage_bucket": "mobile-apps-shelter-project.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1081597694999:android:f7fda92d9b4821b1",
+        "mobilesdk_app_id": "1:530695232479:android:f7fda92d9b4821b1",
         "android_client_info": {
           "package_name": "com.example.shelterconnect"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1081597694999-jc6gprjeg00of9f7d3eqgl20n435mpla.apps.googleusercontent.com",
+          "client_id": "530695232479-f8fc2h5q7jnap4h446sgu0u9slqlh63l.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.example.shelterconnect",
-            "certificate_hash": "e22db5a58a7eb7bc5d1bbccc9dfd7d3b191fd335"
+            "certificate_hash": "4dc8e6226a0b845b76cc6a316ebec575ed17f953"
           }
         },
         {
-          "client_id": "1081597694999-9sav0k06e8852tfceml1v1oe9dqj07ki.apps.googleusercontent.com",
+          "client_id": "530695232479-jqhghi3q6uombi7kd43s8shsqhb0iqa8.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBEw8_npAQyilWThrL3U-AtYl5GFw5crgw"
+          "current_key": "AIzaSyCfdSOlOqJh5C6YfCfXR-Y58GJrudA90cE"
         }
       ],
       "services": {
@@ -40,7 +40,7 @@
           "status": 2,
           "other_platform_oauth_client": [
             {
-              "client_id": "1081597694999-9sav0k06e8852tfceml1v1oe9dqj07ki.apps.googleusercontent.com",
+              "client_id": "530695232479-jqhghi3q6uombi7kd43s8shsqhb0iqa8.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
