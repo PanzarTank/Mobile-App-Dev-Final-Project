@@ -21,7 +21,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,24 +28,24 @@
             android:name=".controller.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.SignUpWorkerActivity" />
-        <activity android:name=".controller.SignUpDonorActivity" />
         <activity android:name=".controller.OpenRequestsActivity" />
-        <activity
-            android:name=".controller.LoginActivity"
-            android:label="@string/title_activity_login" />
         <activity android:name=".controller.ClosedRequestsActivity" />
-        <activity android:name=".controller.items.ReadItemActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-
-        <activity android:name=".controller.items.CreateItemActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.items.UpdateItemActivity" android:theme="@style/AppTheme.NoActionBar" />
-
+        <activity
+            android:name=".controller.items.ReadItemActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.items.CreateItemActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.items.UpdateItemActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.NewRequestActivity" />
         <activity android:name=".controller.MakeDonationActivity" />
         <activity android:name=".controller.ReceiveItemActivity" />
+        <activity android:name=".controller.LoginActivity" />
         <activity android:name=".controller.WorkerListActivity" />
         <activity android:name=".controller.MyDonationsActivity" />
+        <activity android:name=".controller.SignUp"></activity>
     </application>
     <uses-permission android:name="com.android.vending.BILLING" />
 </manifest>
