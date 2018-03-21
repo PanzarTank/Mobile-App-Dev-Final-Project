@@ -48,5 +48,5 @@
         <activity android:name=".controller.WorkerListActivity" />
         <activity android:name=".controller.MyDonationsActivity" />
     </application>
-
+    <uses-permission android:name="com.android.vending.BILLING" />
 </manifest>
