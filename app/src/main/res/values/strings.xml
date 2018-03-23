@@ -24,4 +24,6 @@
     <string name="login">Login</string>
     <string name="sign_in">Sign-In</string>
     <string name="password">Password</string>
+    <string name="donor">Donor</string>
+    <string name="employee">Employee</string>
 </resources>
