@@ -63,55 +63,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         findViewById(R.id.toLogin_button).setOnClickListener(this);
     }
 
-    private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
-        String url;
-        HashMap<String, String> params;
-        int requestCode;
-
-        PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode) {
-            this.url = url;
-            this.params = params;
-            this.requestCode = requestCode;
-        }
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            super.onPostExecute(s);
-            try {
-                JSONObject object = new JSONObject(s);
-
-                if (!object.getBoolean("error")) {
-                    Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
-                    //Intent myIntent = new Intent(SignUp.this, WorkerListActivity.class);
-                    //startActivity(myIntent);
-                }
-
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }
-
-        @Override
-        protected String doInBackground(Void... voids) {
-            RequestHandler requestHandler = new RequestHandler();
-
-            if (requestCode == Api.CODE_POST_REQUEST) {
-                return requestHandler.sendPostRequest(url, params);
-            }
-
-            if (requestCode == Api.CODE_GET_REQUEST) {
-                return requestHandler.sendGetRequest(url);
-            }
-
-            return null;
-        }
-    }
-
     private void createUser() {
         String email = signInEmail.getText().toString().trim();
         String name = userName.getText().toString().trim();
@@ -237,7 +188,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         createUser();
         progressBar.setVisibility(View.GONE);
 
-        /*
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -250,7 +200,55 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 }
             }
         });
-        */
+    }
+
+    private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
+        String url;
+        HashMap<String, String> params;
+        int requestCode;
+
+        PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode) {
+            this.url = url;
+            this.params = params;
+            this.requestCode = requestCode;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try {
+                JSONObject object = new JSONObject(s);
+
+                if (!object.getBoolean("error")) {
+                    Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                    Intent myIntent = new Intent(SignUp.this, HomePage.class);
+                    startActivity(myIntent);
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            RequestHandler requestHandler = new RequestHandler();
+
+            if (requestCode == Api.CODE_POST_REQUEST) {
+                return requestHandler.sendPostRequest(url, params);
+            }
+
+            if (requestCode == Api.CODE_GET_REQUEST) {
+                return requestHandler.sendGetRequest(url);
+            }
+
+            return null;
+        }
     }
 
     @Override
