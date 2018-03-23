@@ -3,6 +3,7 @@ package com.example.shelterconnect.controller;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Patterns;
@@ -15,6 +16,9 @@ import android.widget.Toast;
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONException;

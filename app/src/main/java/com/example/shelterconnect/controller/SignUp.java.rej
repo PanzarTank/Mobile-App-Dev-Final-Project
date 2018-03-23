@@ -1,0 +1,11 @@
+diff a/app/src/main/java/com/example/shelterconnect/controller/SignUp.java b/app/src/main/java/com/example/shelterconnect/controller/SignUp.java	(rejected hunks)
+@@ -15,9 +15,6 @@
+ import com.example.shelterconnect.R;
+ import com.example.shelterconnect.database.Api;
+ import com.example.shelterconnect.database.RequestHandler;
+-import com.google.android.gms.tasks.OnCompleteListener;
+-import com.google.android.gms.tasks.Task;
+-import com.google.firebase.auth.AuthResult;
+ import com.google.firebase.auth.FirebaseAuth;
+ 
+ import org.json.JSONException;
