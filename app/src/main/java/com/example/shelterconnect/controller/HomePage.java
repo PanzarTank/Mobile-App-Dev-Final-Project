@@ -25,6 +25,7 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         findViewById(R.id.goItemList).setOnClickListener(this);
         findViewById(R.id.goAddItem).setOnClickListener(this);
         findViewById(R.id.goLoginPage).setOnClickListener(this);
+        findViewById(R.id.goWorkerList).setOnClickListener(this);
     }
 
     @Override
@@ -40,6 +41,12 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
                 break;
             case R.id.goLoginPage:
                 startActivity(new Intent(this, LoginActivity.class));
+
+                break;
+            case R.id.goWorkerList:
+                startActivity(new Intent(this, WorkerListActivity.class));
+
+                break;
         }
     }
 

@@ -43,7 +43,9 @@
         <activity android:name=".controller.MakeDonationActivity" />
         <activity android:name=".controller.ReceiveItemActivity" />
         <activity android:name=".controller.LoginActivity" />
-        <activity android:name=".controller.WorkerListActivity" />
+        <activity
+            android:name=".controller.WorkerListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.MyDonationsActivity" />
         <activity android:name=".controller.SignUp"></activity>
     </application>

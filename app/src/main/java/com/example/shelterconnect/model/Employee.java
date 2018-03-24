@@ -10,17 +10,19 @@ public class Employee {
     private String name;
     private int position;
     private String email;
-    private String password;
+    private String phone;
+    private String address;
 
-    public Employee(int employeeID, String name, int position, String email, String password) {
-        if (employeeID < 0 || name == null || position < 1 || email == null || password == null) {
+    public Employee(int employeeID, String name, int position, String phone, String email, String address) {
+        if (employeeID < 0 || name == null || position < 1 || email == null || address == null) {
             throw new IllegalArgumentException("Invalid input");
         }
         this.employeeID = employeeID;
         this.name = name;
         this.position = position;
         this.email = email;
-        this.password = password;
+        this.address = address;
+        this.phone = phone;
     }
 
     public int getEmployeeID() {
@@ -55,12 +57,19 @@ public class Employee {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getAddress() {
+        return this.address;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
+    public String getPhone() {
+        return this.phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

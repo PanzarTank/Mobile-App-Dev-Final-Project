@@ -67,7 +67,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         String name = userName.getText().toString().trim();
         String phone = userPhone.getText().toString().trim();
         String address = userAddress.getText().toString().trim();
-        String password = "123456";
         String position;
 
         if (donor.isChecked()) {
@@ -183,9 +182,6 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         progressBar.setVisibility(View.VISIBLE);
 
-        createUser();
-        progressBar.setVisibility(View.GONE);
-
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -223,7 +219,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                 JSONObject object = new JSONObject(s);
 
                 if (!object.getBoolean("error")) {
-                    Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
                     Intent myIntent = new Intent(SignUp.this, HomePage.class);
                     startActivity(myIntent);
                 }

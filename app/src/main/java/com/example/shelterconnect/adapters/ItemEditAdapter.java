@@ -62,7 +62,7 @@ public class ItemEditAdapter extends RecyclerView.Adapter<ItemEditAdapter.ItemVi
             cv = (CardView) v.findViewById(R.id.cv);
             name = (TextView) v.findViewById(R.id.name);
             price = (TextView) v.findViewById(R.id.price);
-            quantity = (EditText) v.findViewById(R.id.quantity);
+            quantity = (EditText) v.findViewById(R.id.email);
             deleteButton = (ImageButton) v.findViewById(R.id.deleteButton);
 
         }
