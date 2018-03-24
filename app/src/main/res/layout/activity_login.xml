@@ -81,15 +81,27 @@
                 android:text="@string/register"
                 android:textStyle="bold" />
 
-            <com.google.android.gms.common.SignInButton
+            <ProgressBar
+                android:id="@+id/loginProgressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:visibility="gone" />
+
+            <!--<com.google.android.gms.common.SignInButton
                 android:id="@+id/google_signin"
                 style="?android:textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/action_sign_in"
-                android:textStyle="bold" />
+                android:textStyle="bold" /> -->
 
         </LinearLayout>
+
     </ScrollView>
+
 </LinearLayout>
+
+
+
