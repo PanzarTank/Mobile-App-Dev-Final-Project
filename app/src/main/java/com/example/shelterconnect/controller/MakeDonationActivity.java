@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
@@ -35,7 +36,7 @@ public class MakeDonationActivity extends AppCompatActivity implements BillingPr
 
     @Override
     public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
-
+        Toast.makeText(this, "Thanks for donating!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -45,7 +46,7 @@ public class MakeDonationActivity extends AppCompatActivity implements BillingPr
 
     @Override
     public void onBillingError(int errorCode, @Nullable Throwable error) {
-
+        Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -59,7 +60,7 @@ public class MakeDonationActivity extends AppCompatActivity implements BillingPr
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
-    
+
     @Override
     public void onDestroy() {
         if (bp != null) {
