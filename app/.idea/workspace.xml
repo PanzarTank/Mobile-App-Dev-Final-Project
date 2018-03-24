@@ -14,23 +14,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9b613f95-714d-4371-ac9f-c430d638d9d9" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/adapters/WorkerItemAdapter.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/res/layout/worker_list_item.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUp.java.rej" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/adapters/ItemAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/adapters/ItemAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/adapters/ItemEditAdapter.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/adapters/ItemEditAdapter.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/HomePage.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/HomePage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUp.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUp.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/WorkerListActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/WorkerListActivity.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/model/Employee.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/model/Employee.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_home_page.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_home_page.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/activity_worker_list.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_worker_list.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/content_home_page.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/content_home_page.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/item_list_edit.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/item_list_edit.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/layout/item_list_item.xml" afterPath="$PROJECT_DIR$/src/main/res/layout/item_list_item.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -124,17 +109,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="SignUp.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SignUp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1462">
-              <caret line="122" column="19" lean-forward="false" selection-start-line="122" selection-start-column="12" selection-end-line="122" selection-end-column="19" />
+            <state relative-caret-position="263">
+              <caret line="218" column="0" lean-forward="true" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6465#7019#0" expanded="true" />
-                <element signature="e#7018#7019#0" expanded="true" />
-                <marker date="1521843740378" expanded="false" signature="7460:7475" ph=" { " />
-                <marker date="1521843740378" expanded="false" signature="7496:7506" ph=" }" />
+                <element signature="e#6533#7366#0" expanded="true" />
+                <element signature="e#7365#7366#0" expanded="true" />
+                <marker date="1521924354650" expanded="false" signature="7807:7822" ph=" { " />
+                <marker date="1521924354650" expanded="false" signature="7843:7853" ph=" }" />
               </folding>
             </state>
           </provider>
@@ -215,7 +200,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WorkerItemAdapter.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="WorkerItemAdapter.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/adapters/WorkerItemAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="318">
@@ -2033,10 +2018,10 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/HomePage.java" />
         <option value="$PROJECT_DIR$/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_worker_list.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUp.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/model/Employee.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/WorkerListActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/adapters/WorkerItemAdapter.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUp.java" />
       </list>
     </option>
   </component>
@@ -2421,7 +2406,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521849229374" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521924457241" />
       </method>
     </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests">
@@ -2469,7 +2454,7 @@
       </Profilers>
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521849229374" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521924457241" />
       </method>
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -2652,7 +2637,7 @@
       <option name="ACTIVITY_CLASS" value="" />
       <method>
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521849229375" />
+        <option name="com.android.instantApps.provision.BeforeRunTask" enabled="true" clearCache="false" clearProvisionedDevices="false" myTimestamp="1521924457242" />
       </method>
     </configuration>
     <list size="2">
@@ -2700,12 +2685,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Android Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987553" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987553" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Logcat" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3807054" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3807054" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -2833,10 +2819,10 @@
           <caret line="72" column="19" lean-forward="true" selection-start-line="72" selection-start-column="19" selection-end-line="72" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6465#7019#0" expanded="true" />
-            <element signature="e#7018#7019#0" expanded="true" />
-            <marker date="1521843740378" expanded="false" signature="7460:7475" ph=" { " />
-            <marker date="1521843740378" expanded="false" signature="7496:7506" ph=" }" />
+            <element signature="e#6533#7366#0" expanded="true" />
+            <element signature="e#7365#7366#0" expanded="true" />
+            <marker date="1521924354650" expanded="false" signature="7807:7822" ph=" { " />
+            <marker date="1521924354650" expanded="false" signature="7843:7853" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -2847,10 +2833,10 @@
           <caret line="34" column="48" lean-forward="false" selection-start-line="34" selection-start-column="48" selection-end-line="34" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#6465#7019#0" expanded="true" />
-            <element signature="e#7018#7019#0" expanded="true" />
-            <marker date="1521843740378" expanded="false" signature="7460:7475" ph=" { " />
-            <marker date="1521843740378" expanded="false" signature="7496:7506" ph=" }" />
+            <element signature="e#6533#7366#0" expanded="true" />
+            <element signature="e#7365#7366#0" expanded="true" />
+            <marker date="1521924354650" expanded="false" signature="7807:7822" ph=" { " />
+            <marker date="1521924354650" expanded="false" signature="7843:7853" ph=" }" />
           </folding>
         </state>
       </provider>
@@ -3199,20 +3185,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1462">
-          <caret line="122" column="19" lean-forward="false" selection-start-line="122" selection-start-column="12" selection-end-line="122" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6465#7019#0" expanded="true" />
-            <element signature="e#7018#7019#0" expanded="true" />
-            <marker date="1521843740378" expanded="false" signature="7460:7475" ph=" { " />
-            <marker date="1521843740378" expanded="false" signature="7496:7506" ph=" }" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/model/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="901">
@@ -3256,6 +3228,20 @@
             <element signature="imports" expanded="true" />
             <element signature="e#2294#3726#0" expanded="true" />
             <element signature="e#3725#3726#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUp.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="218" column="0" lean-forward="true" selection-start-line="218" selection-start-column="0" selection-end-line="218" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6533#7366#0" expanded="true" />
+            <element signature="e#7365#7366#0" expanded="true" />
+            <marker date="1521924354650" expanded="false" signature="7807:7822" ph=" { " />
+            <marker date="1521924354650" expanded="false" signature="7843:7853" ph=" }" />
           </folding>
         </state>
       </provider>
