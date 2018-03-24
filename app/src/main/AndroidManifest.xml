@@ -48,6 +48,10 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".controller.MyDonationsActivity" />
         <activity android:name=".controller.SignUp"></activity>
+        <activity android:name=".controller.requests.GetRequestActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".controller.requests.CreateRequestActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".controller.requests.DeleteRequestActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".controller.requests.UpdateRequestActivity" android:theme="@style/AppTheme.NoActionBar"/>
     </application>
     <uses-permission android:name="com.android.vending.BILLING" />
 </manifest>

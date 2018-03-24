@@ -12,6 +12,9 @@ import android.widget.Button;
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.controller.items.CreateItemActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
+import com.example.shelterconnect.controller.requests.CreateRequestActivity;
+import com.example.shelterconnect.controller.requests.GetRequestActivity;
+import com.example.shelterconnect.controller.requests.UpdateRequestActivity;
 
 public class HomePage extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,6 +29,8 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
         findViewById(R.id.goAddItem).setOnClickListener(this);
         findViewById(R.id.goLoginPage).setOnClickListener(this);
         findViewById(R.id.goWorkerList).setOnClickListener(this);
+        findViewById(R.id.viewRequest).setOnClickListener(this);
+        findViewById(R.id.newRequest).setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +51,14 @@ public class HomePage extends AppCompatActivity implements View.OnClickListener 
             case R.id.goWorkerList:
                 startActivity(new Intent(this, WorkerListActivity.class));
 
+                break;
+            case R.id.newRequest:
+                startActivity(new Intent(this, CreateRequestActivity.class));
+
+                break;
+
+            case R.id.viewRequest:
+                startActivity(new Intent(this, GetRequestActivity.class));
                 break;
         }
     }
