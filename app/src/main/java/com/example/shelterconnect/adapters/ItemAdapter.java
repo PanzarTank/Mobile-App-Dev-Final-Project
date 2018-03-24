@@ -42,7 +42,7 @@ public class ItemAdapter extends ArrayAdapter<Item> {
             String itemPriceText = "$"+Double.toString(currItem.getPrice());
             itemPrice.setText(itemPriceText);
 
-            TextView itemQuantity = (TextView) currentView.findViewById(R.id.email);
+            TextView itemQuantity = (TextView) currentView.findViewById(R.id.quantity);
             itemQuantity.setText(Integer.toString(currItem.getQuantity()));
 
         } catch (Exception e) {
