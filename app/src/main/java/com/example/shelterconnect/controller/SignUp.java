@@ -225,7 +225,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
                 if (!object.getBoolean("error")) {
                     //Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
-                    Intent myIntent = new Intent(SignUp.this, HomePage.class);
+                    Intent myIntent = new Intent(SignUp.this, DonorHomePage.class);
                     startActivity(myIntent);
                 }
 

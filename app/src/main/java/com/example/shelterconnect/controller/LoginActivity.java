@@ -84,6 +84,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 if (!object.getBoolean("error")) {
 
+                    JSONArray donors = object.getJSONArray("donors");
+                    JSONArray workers = object.getJSONArray("workers");
+
+                    if(donors == null && workers != null){
+                        refreshWorkerist(workers);
+                    } else if(workers == null && donors != null){
+                        refreshDonorList(donors);
+                    }
+
+                   // refreshDonorList(object.getJSONArray("donors"));
                 }
 
             } catch (JSONException e) {
@@ -128,6 +138,25 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             donorList.add(new Donor(
                     obj.getInt("donorID"),
                     obj.getString("name"),
+                    obj.getString("phone"),
+                    obj.getString("address"),
+                    obj.getString("email")
+            ));
+        }
+    }
+
+    private void refreshWorkerist(JSONArray items) throws JSONException {
+        workerList.clear();
+
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject obj = items.getJSONObject(i);
+
+            System.out.println(obj);
+
+            workerList.add(new Employee(
+                    obj.getInt("donorID"),
+                    obj.getString("name"),
+                    obj.getInt("position"),
                     obj.getString("phone"),
                     obj.getString("address"),
                     obj.getString("email")
@@ -183,11 +212,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     for (Donor d : donorList) {
                         if (fireBaseEmail.equals(d.getEmail())) {
                             currDonor = d;
+                            //Go to donor home page
+                            Toast.makeText(getApplicationContext(), "Donor login successful", Toast.LENGTH_SHORT).show();
                         }
                     }
                     for (Employee e : workerList) {
                         if (fireBaseEmail.equals(e.getEmail())) {
                             currWorker = e;
+                            if (e.getPosition() == 1) {
+                                //Go to worker home page
+                                Toast.makeText(getApplicationContext(), "Employee login successful", Toast.LENGTH_SHORT).show();
+                            } else if (e.getPosition() == 2) {
+                                //Go to organizer home page
+                                Toast.makeText(getApplicationContext(), "Organizer login successful", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 } else {
