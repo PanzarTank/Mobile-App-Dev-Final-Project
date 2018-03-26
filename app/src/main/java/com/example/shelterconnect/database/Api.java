@@ -31,4 +31,7 @@ public class Api {
     public static final String URL_UPDATE_DONOR = ROOT_URL + "updatedonor";
     public static final String URL_DELETE_DONOR = ROOT_URL + "deletedonor&id=";
 
+    public static final String URL_READ_USERS = ROOT_URL + "getusers";
+
+
 }

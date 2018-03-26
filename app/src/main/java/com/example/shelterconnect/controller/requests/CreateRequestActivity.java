@@ -17,7 +17,6 @@ import com.example.shelterconnect.R;
 import com.example.shelterconnect.controller.requests.CreateRequestActivity;
 import com.example.shelterconnect.controller.requests.GetRequestActivity;
 import com.example.shelterconnect.database.Api;
-import com.example.shelterconnect.database.PerformNetworkRequest;
 import com.example.shelterconnect.database.RequestHandler;
 
 import org.json.JSONException;

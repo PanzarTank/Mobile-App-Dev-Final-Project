@@ -1,32 +1,28 @@
 package com.example.shelterconnect.controller;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shelterconnect.R;
-import com.example.shelterconnect.adapters.ItemAdapter;
-import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Donor;
 import com.example.shelterconnect.model.Employee;
-import com.example.shelterconnect.model.Item;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,6 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     ProgressBar progressBar;
     ArrayList<Donor> donorList;
     ArrayList<Employee> workerList;
+    SharedPreferences userLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +52,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         signInEmail = findViewById(R.id.signInEmail);
         signInPassword = findViewById(R.id.signInPassword);
         progressBar = findViewById(R.id.loginProgressBar);
+        progressBar.setVisibility(View.GONE);
+        userLevel = getSharedPreferences("userLevel", Context.MODE_PRIVATE);
+
+       // readDonors();
+        //readWorkers();
+
+        LoginActivity.PerformNetworkRequest request = new LoginActivity.PerformNetworkRequest(Api.URL_READ_USERS, null, Api.CODE_GET_REQUEST);
+        request.execute();
 
         findViewById(R.id.register).setOnClickListener(this);
         findViewById(R.id.sign_in).setOnClickListener(this);
+
+        this.donorList = new ArrayList<Donor>();
+        this.workerList = new ArrayList<Employee>();
     }
 
     private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
@@ -81,17 +89,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             super.onPostExecute(s);
             try {
                 JSONObject object = new JSONObject(s);
+                System.out.println("OBJECT!!!!!!!!!" + object);
 
                 if (!object.getBoolean("error")) {
 
                     JSONArray donors = object.getJSONArray("donors");
                     JSONArray workers = object.getJSONArray("workers");
 
-                    if(donors == null && workers != null){
-                        refreshWorkerist(workers);
-                    } else if(workers == null && donors != null){
+                        refreshWorkerList(workers);
+                        System.out.println(workerList.get(0).getEmail());
                         refreshDonorList(donors);
-                    }
+
 
                    // refreshDonorList(object.getJSONArray("donors"));
                 }
@@ -133,8 +141,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         for (int i = 0; i < items.length(); i++) {
             JSONObject obj = items.getJSONObject(i);
 
-            System.out.println(obj);
-
             donorList.add(new Donor(
                     obj.getInt("donorID"),
                     obj.getString("name"),
@@ -145,21 +151,23 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         }
     }
 
-    private void refreshWorkerist(JSONArray items) throws JSONException {
+    private void refreshWorkerList(JSONArray items) throws JSONException {
+
+        System.out.println("GOT TO REFRESH WORKER LIST!!!!!!!!");
         workerList.clear();
 
         for (int i = 0; i < items.length(); i++) {
             JSONObject obj = items.getJSONObject(i);
 
-            System.out.println(obj);
-
+            System.out.println("Position! " + obj.getInt("position"));
+//int employeeID, String name, int position, String phone, String email, String address
             workerList.add(new Employee(
-                    obj.getInt("donorID"),
+                    obj.getInt("workerID"),
                     obj.getString("name"),
                     obj.getInt("position"),
                     obj.getString("phone"),
-                    obj.getString("address"),
-                    obj.getString("email")
+                    obj.getString("email"),
+                    obj.getString("address")
             ));
         }
     }
@@ -206,13 +214,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    progressBar.setVisibility(View.GONE);
                     fireBaseEmail = mAuth.getCurrentUser().getEmail();
-                    readDonors();
-                    readWorkers();
+                    Log.d("email", fireBaseEmail);
                     for (Donor d : donorList) {
                         if (fireBaseEmail.equals(d.getEmail())) {
                             currDonor = d;
                             //Go to donor home page
+                            SharedPreferences.Editor editor = userLevel.edit();
+                            editor.putString("position", "0");
+                            editor.commit();
                             Toast.makeText(getApplicationContext(), "Donor login successful", Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -221,15 +232,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             currWorker = e;
                             if (e.getPosition() == 1) {
                                 //Go to worker home page
-                                Toast.makeText(getApplicationContext(), "Employee login successful", Toast.LENGTH_SHORT).show();
+                                SharedPreferences.Editor editor = userLevel.edit();
+                                editor.putString("position", "1");
+                                editor.commit();
+                                Toast.makeText(getApplicationContext(), "Employee login successful", Toast.LENGTH_LONG).show();
                             } else if (e.getPosition() == 2) {
                                 //Go to organizer home page
+                                SharedPreferences.Editor editor = userLevel.edit();
+                                editor.putString("position", "2");
+                                editor.commit();
                                 Toast.makeText(getApplicationContext(), "Organizer login successful", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                 //   progressBar.setVisibility(View.GONE);
+                   // Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -244,7 +262,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.sign_in:
                 userLogin();
-
 
                 break;
         }
