@@ -16,11 +16,14 @@ import android.widget.Toast;
 import com.anjlab.android.iab.v3.BillingProcessor;
 import com.anjlab.android.iab.v3.TransactionDetails;
 import com.example.shelterconnect.R;
+import com.example.shelterconnect.model.Donation;
 
 public class MakeDonationActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
     BillingProcessor bp;
     private Button submit;
     private EditText expDate;
+    //Donation donation = new Donation();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

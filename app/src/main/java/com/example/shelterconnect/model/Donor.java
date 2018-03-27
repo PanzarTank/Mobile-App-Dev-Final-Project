@@ -12,7 +12,6 @@ public class Donor {
     private String address;
     private String email;
 
-
     public Donor(int id, String name, String phone, String address, String email) {
         this.id = id;
         this.phone = phone;
