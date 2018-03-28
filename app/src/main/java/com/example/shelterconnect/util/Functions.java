@@ -1,6 +1,9 @@
 package com.example.shelterconnect.util;
 
-import java.text.DecimalFormat;
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by daniel on 3/4/18.
@@ -8,11 +11,17 @@ import java.text.DecimalFormat;
 
 public class Functions {
 
-    private static DecimalFormat df = new DecimalFormat("#.##");
 
-    public static String convertToFormat(double value){
+    public static int getUsetLevel(Context context){
 
-        return df.format(value);
+        Context mContext = context;
+        SharedPreferences shared = mContext.getSharedPreferences("userLevel", MODE_PRIVATE);
+
+        String userLevel = (shared.getString("position", "-1"));
+
+        int userPosition = Integer.parseInt(userLevel);
+
+        return userPosition;
     }
 
 }
