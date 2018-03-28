@@ -27,7 +27,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class SignUp extends AppCompatActivity implements View.OnClickListener {
+public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
 
     EditText signInEmail, signInPassword, userName, userPhone, userAddress, verifyPassword;
     ProgressBar progressBar;
@@ -42,7 +42,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        builder = new AlertDialog.Builder(SignUp.this).create();
+        builder = new AlertDialog.Builder(SignUpActivity.this).create();
         builder.setTitle("Alert");
         builder.setMessage("Please select your position at the bottom");
 
@@ -225,7 +225,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
                 if (!object.getBoolean("error")) {
                     //Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
-                    Intent myIntent = new Intent(SignUp.this, DonorHomePage.class);
+                    Intent myIntent = new Intent(SignUpActivity.this, TestHomeActivity.class);
                     startActivity(myIntent);
                 }
 

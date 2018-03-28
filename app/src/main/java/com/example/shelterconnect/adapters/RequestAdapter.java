@@ -42,8 +42,6 @@ public class RequestAdapter extends ArrayAdapter<Request> {
             }
 
 
-
-
             TextView itemName = (TextView) currentView.findViewById(R.id.requestID);
             itemName.setText(Integer.toString(currRequest.getRequestID()));
 

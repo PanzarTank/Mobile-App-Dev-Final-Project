@@ -9,7 +9,6 @@ import android.support.v7.app.AlertDialog;
 import android.widget.TextView;
 
 import com.example.shelterconnect.R;
-import com.example.shelterconnect.controller.SignUp;
 import com.example.shelterconnect.model.Employee;
 
 import java.util.ArrayList;

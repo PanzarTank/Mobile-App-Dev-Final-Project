@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -33,37 +32,37 @@
 
                 <TextView
                     android:id="@+id/textViewRequestID"
-                    android:gravity="left"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="left"
                     android:text="ID"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
                     android:id="@+id/textViewNeededLabel"
-                    android:gravity="left"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="left"
                     android:text="Needed"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
                     android:id="@+id/textViewAchievedLabel"
-                    android:gravity="left"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="left"
                     android:text="Achieved"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
                     android:id="@+id/textViewWorkerID"
-                    android:gravity="left"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="left"
                     android:text="Worker ID"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
@@ -83,17 +82,53 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/viewDonationsButton"
-        android:layout_width="395dp"
-        android:layout_height="164dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
+        android:id="@+id/viewItemsButton"
+        android:layout_width="194dp"
+        android:layout_height="80dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="See Your Past Donations!"
-        android:textSize="32sp"
-        app:layout_constraintBottom_toTopOf="@+id/donorScrollView"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
+        android:text="Items"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/viewWorkersButton"
+        android:layout_width="194dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:text="Workers"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewItemsButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/viewCompletedRequestsButton"
+        android:layout_width="194dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="1dp"
+        android:text="Completed Requests"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/donorScrollView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewItemsButton" />
+
+    <Button
+        android:id="@+id/requestItemsButton"
+        android:layout_width="194dp"
+        android:layout_height="80dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="1dp"
+        android:text="Request Items"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toTopOf="@+id/donorScrollView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/viewCompletedRequestsButton"
+        app:layout_constraintTop_toBottomOf="@+id/viewWorkersButton" />
+
 </android.support.constraint.ConstraintLayout>

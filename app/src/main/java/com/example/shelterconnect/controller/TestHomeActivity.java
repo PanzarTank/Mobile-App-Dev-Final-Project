@@ -14,12 +14,12 @@ import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.requests.CreateRequestActivity;
 import com.example.shelterconnect.controller.requests.GetRequestActivity;
 
-public class DonorHomePage extends AppCompatActivity implements View.OnClickListener {
+public class TestHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_donor_home);
+        setContentView(R.layout.activity_test_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -29,11 +29,14 @@ public class DonorHomePage extends AppCompatActivity implements View.OnClickList
         findViewById(R.id.goWorkerList).setOnClickListener(this);
         findViewById(R.id.viewRequest).setOnClickListener(this);
         findViewById(R.id.newRequest).setOnClickListener(this);
+        findViewById(R.id.goDonorHome).setOnClickListener(this);
+        findViewById(R.id.goWorkerHome).setOnClickListener(this);
+        findViewById(R.id.goOrganizerHome).setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-        switch(view.getId()) {
+        switch (view.getId()) {
             case R.id.goItemList:
                 startActivity(new Intent(this, ReadItemActivity.class));
 
@@ -57,6 +60,19 @@ public class DonorHomePage extends AppCompatActivity implements View.OnClickList
 
             case R.id.viewRequest:
                 startActivity(new Intent(this, GetRequestActivity.class));
+
+                break;
+            case R.id.goDonorHome:
+                startActivity(new Intent(this, DonorHomeActivity.class));
+
+                break;
+            case R.id.goWorkerHome:
+                startActivity(new Intent(this, WorkerHomeActivity.class));
+
+                break;
+            case R.id.goOrganizerHome:
+                startActivity(new Intent(this, OrganizerHomeActivity.class));
+
                 break;
         }
     }

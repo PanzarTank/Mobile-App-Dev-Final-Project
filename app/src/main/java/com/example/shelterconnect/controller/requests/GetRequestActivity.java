@@ -112,15 +112,15 @@ public class GetRequestActivity extends AppCompatActivity {
             int activeInt = obj.getInt("active");
             boolean active = false;
 
-            if(activeInt == 0){
+            if (activeInt == 0) {
                 active = true;
-            } else if(activeInt == 1){
+            } else if (activeInt == 1) {
                 active = false;
             }
 
             requestList.add(new Request(
                     obj.getInt("requestID"),
-                   obj.getInt("quantity"),
+                    obj.getInt("quantity"),
                     obj.getDouble("amountNeeded"),  // needed attribute
                     obj.getDouble("amountRaised"),// achieved attribute
                     obj.getInt("workerID"),

@@ -6,46 +6,46 @@
 
     <TextView
         android:id="@+id/requestID"
+        android:gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:layout_weight="1"
         android:padding="5dp" />
 
     <TextView
         android:id="@+id/achieved"
+        android:gravity="left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
         android:layout_weight="1" />
 
     <TextView
         android:id="@+id/required"
+        android:gravity="left"
         android:layout_width="wrap_content"
-        android:textAlignment="center"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
     <TextView
         android:id="@+id/empID"
+        android:gravity="left"
         android:layout_width="wrap_content"
-        android:textAlignment="center"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
     <TextView
         android:id="@+id/itm"
+        android:gravity="left"
         android:layout_width="0dp"
-        android:textAlignment="center"
         android:layout_height="0dp"
         android:layout_weight="0" />
 
     <TextView
         android:id="@+id/act"
+        android:gravity="left"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_weight="0"
-        android:textAlignment="center" />
+        android:layout_weight="0" />
 
 
     <Button

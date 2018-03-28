@@ -55,7 +55,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressBar.setVisibility(View.GONE);
         userLevel = getSharedPreferences("userLevel", Context.MODE_PRIVATE);
 
-       // readDonors();
+        //readDonors();
         //readWorkers();
 
         LoginActivity.PerformNetworkRequest request = new LoginActivity.PerformNetworkRequest(Api.URL_READ_USERS, null, Api.CODE_GET_REQUEST);
@@ -96,12 +96,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     JSONArray donors = object.getJSONArray("donors");
                     JSONArray workers = object.getJSONArray("workers");
 
-                        refreshWorkerList(workers);
-                        System.out.println(workerList.get(0).getEmail());
-                        refreshDonorList(donors);
+                    refreshWorkerList(workers);
+                    System.out.println(workerList.get(0).getEmail());
+                    refreshDonorList(donors);
 
 
-                   // refreshDonorList(object.getJSONArray("donors"));
+                    // refreshDonorList(object.getJSONArray("donors"));
                 }
 
             } catch (JSONException e) {
@@ -246,8 +246,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                         }
                     }
                 } else {
-                 //   progressBar.setVisibility(View.GONE);
-                   // Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    //   progressBar.setVisibility(View.GONE);
+                    // Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -257,7 +257,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.register:
-                startActivity(new Intent(this, SignUp.class));
+                startActivity(new Intent(this, SignUpActivity.class));
 
                 break;
             case R.id.sign_in:
