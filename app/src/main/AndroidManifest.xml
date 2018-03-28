@@ -22,7 +22,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -30,8 +29,12 @@
             android:name=".controller.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.OpenRequestsActivity" />
-        <activity android:name=".controller.ClosedRequestsActivity" />
+        <activity
+            android:name=".controller.OpenRequestsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.ClosedRequestsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controller.items.ReadItemActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -41,15 +44,27 @@
         <activity
             android:name=".controller.items.UpdateItemActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.NewRequestActivity" />
-        <activity android:name=".controller.MakeDonationActivity" />
-        <activity android:name=".controller.ReceiveItemActivity" />
-        <activity android:name=".controller.LoginActivity" />
+        <activity
+            android:name=".controller.NewRequestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.MakeDonationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.ReceiveItemActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.LoginActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controller.WorkerListActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.MyDonationsActivity" />
-        <activity android:name=".controller.SignUpActivity" />
+        <activity
+            android:name=".controller.MyDonationsActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.SignUpActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".controller.requests.GetRequestActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -65,8 +80,12 @@
         <activity
             android:name=".controller.DonorHomeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".controller.WorkerHomeActivity" />
-        <activity android:name=".controller.OrganizerHomeActivity"></activity>
+        <activity
+            android:name=".controller.WorkerHomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.OrganizerHomeActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

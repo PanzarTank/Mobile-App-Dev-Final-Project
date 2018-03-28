@@ -7,6 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".controller.DonorHomeActivity">
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/itemToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        app:theme="@style/ToolBarStyle" />
+
     <ScrollView
         android:id="@+id/donorScrollView"
         android:layout_width="395dp"
@@ -85,15 +93,13 @@
     <Button
         android:id="@+id/viewDonationsButton"
         android:layout_width="395dp"
-        android:layout_height="164dp"
+        android:layout_height="136dp"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:text="See Your Past Donations!"
         android:textSize="32sp"
         app:layout_constraintBottom_toTopOf="@+id/donorScrollView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 </android.support.constraint.ConstraintLayout>

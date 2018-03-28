@@ -34,7 +34,6 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_worker_home);
 
         findViewById(R.id.viewItemsButton).setOnClickListener(this);
