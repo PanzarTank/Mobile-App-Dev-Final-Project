@@ -112,20 +112,29 @@ public class GetRequestActivity extends AppCompatActivity {
             int activeInt = obj.getInt("active");
             boolean active = false;
 
-            if (activeInt == 0) {
+            if(activeInt == 0){
                 active = true;
-            } else if (activeInt == 1) {
+            } else if(activeInt == 1){
                 active = false;
             }
+            int checkNeeded = obj.getInt("amountNeeded");
+            int checkquantity = obj.getInt("quantity");
 
-            requestList.add(new Request(
-                    obj.getInt("requestID"),
+            if (checkNeeded >= checkquantity)
+           { active = false;}
+
+            Request r = new Request(obj.getInt("requestID"),
                     obj.getInt("quantity"),
                     obj.getDouble("amountNeeded"),  // needed attribute
                     obj.getDouble("amountRaised"),// achieved attribute
                     obj.getInt("workerID"),
-                    obj.getInt("itemID"), active)
-            );
+                    obj.getInt("itemID"), active);
+            for (Item item : itemList) {
+                if (item.getItemID() == r.getItemID()) {
+                    r.setName(item.getName());
+                }
+            }
+            requestList.add(r);
         }
 
 

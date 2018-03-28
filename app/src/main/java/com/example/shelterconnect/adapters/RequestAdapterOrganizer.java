@@ -3,7 +3,6 @@ package com.example.shelterconnect.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +22,13 @@ import java.util.ArrayList;
  * Created by parth on 20-03-2018.
  */
 
-public class EditRequestAdapter extends ArrayAdapter<Request> {
+public class RequestAdapterOrganizer extends ArrayAdapter<Request> {
 
-    public static final String REQUEST_ID_EXTRA = "requestID";
     private ArrayList<Request> requests;
     private Context adapterContext;
 
-    public EditRequestAdapter(Context context, ArrayList<Request> requests) {
-        super(context, R.layout.activity_update_request, requests);
+    public RequestAdapterOrganizer(Context context, ArrayList<Request> requests) {
+        super(context, R.layout.activity_open_requests, requests);
         adapterContext = context;
         this.requests = requests;
     }
@@ -45,16 +43,14 @@ public class EditRequestAdapter extends ArrayAdapter<Request> {
             if (currentView == null) {
                 LayoutInflater vi = (LayoutInflater) this.adapterContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-                currentView = vi.inflate(R.layout.request_list_edit, null);
+                currentView = vi.inflate(R.layout.request_list, null);
             }
 
 
 
 
-            final TextView itemName = currentView.findViewById(R.id.requestID);
+            TextView itemName = currentView.findViewById(R.id.requestID);
             itemName.setText(currRequest.getName());
-
-            final int requestIDLabel = (currRequest.getRequestID());
 
             TextView requestNeeded = currentView.findViewById(R.id.required);
             requestNeeded.setText(Double.toString(currRequest.getAmountNeeded()));
@@ -75,10 +71,10 @@ public class EditRequestAdapter extends ArrayAdapter<Request> {
                 @Override
                 public void onClick(View v) {
                     Intent i = new Intent(getContext(), ReceiveItemActivity.class);
-
-                    i.putExtra(REQUEST_ID_EXTRA, String.valueOf(requestIDLabel));
+                    String strName = null;
+                    i.putExtra("STRING_I_NEED", strName);
                     adapterContext.startActivity(i);
-                    Log.d("requestID value", String.valueOf(requestIDLabel));
+                    notifyDataSetChanged();
                 }
             });
 

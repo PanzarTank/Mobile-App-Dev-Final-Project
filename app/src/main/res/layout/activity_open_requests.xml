@@ -31,7 +31,7 @@ tools:context="com.example.shelterconnect.controller.items.ReadItemActivity">
 
         <TextView
             android:id="@+id/textViewNameLabel"
-            android:layout_width="wrap_content"
+            android:layout_width="25dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:padding="5dp"
@@ -55,12 +55,28 @@ tools:context="com.example.shelterconnect.controller.items.ReadItemActivity">
             android:textAlignment="center" />
 
         <TextView
-            android:id="@+id/textViewEmployeeIDLabel"
+            android:id="@+id/textViewQuantityLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Employee ID"
+            android:text="In Stock"
             android:textAlignment="center" />
+
+
+        <Button
+            android:id="@+id/Label"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:textAlignment="center"
+            android:visibility="invisible" />
+        <Button
+            android:id="@+id/extra"
+            android:layout_width="5dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:textAlignment="center"
+            android:visibility="invisible" />
 
 
 

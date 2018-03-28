@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shelterconnect.R;
+import com.example.shelterconnect.adapters.RequestAdapter;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Item;
@@ -29,7 +30,7 @@ public class ReceiveItemActivity extends AppCompatActivity {
     private Request foundRequest = null;
     private Item foundItem = null;
 
-    //String requestID = (String) getIntent().getExtras().get("requestID");
+
     private int requestIDInt = Integer.parseInt("4");
     private NumberPicker numberPicker;
     private TextView itemName;
@@ -40,7 +41,7 @@ public class ReceiveItemActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive_item);
-
+        String requestID = (String) getIntent().getExtras().get(RequestAdapter.REQUEST_ID_EXTRA);
         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_READ_REQUESTS, null, Api.CODE_GET_REQUEST);
         request.execute();
 
