@@ -88,25 +88,30 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         int id = item.getItemId();
 
-        if(id == R.id.home){
+        if (id == R.id.home) {
 
-            int userLevel = Functions.getUsetLevel(this);
+            int userLevel = Functions.getUserLevel(this);
 
-            if(userLevel == 0 | userLevel == -1){
+            if (userLevel == -1) {
+                Toast.makeText(getApplicationContext(), "Please sign in to go to your homepage", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(this, LoginActivity.class);
+                startActivity(myIntent);
+                return true;
+            } else if (userLevel == 0) {
                 Intent myIntent = new Intent(this, DonorHomeActivity.class);
                 startActivity(myIntent);
                 return true;
-            } else  if(userLevel == 1){
+            } else if (userLevel == 1) {
                 Intent myIntent = new Intent(this, WorkerHomeActivity.class);
                 startActivity(myIntent);
                 return true;
-            } else  if(userLevel == 2){
+            } else if (userLevel == 2) {
                 Intent myIntent = new Intent(this, OrganizerHomeActivity.class);
                 startActivity(myIntent);
                 return true;
             }
 
-        } else if(id == R.id.listItems){
+        } else if (id == R.id.listItems) {
             Intent myIntent = new Intent(this, ReadItemActivity.class);
             startActivity(myIntent);
             return true;
@@ -120,10 +125,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             Intent myIntent = new Intent(this, UpdateItemActivity.class);
             startActivity(myIntent);
             return true;
-        } else if(id == R.id.logout){
+        } else if (id == R.id.logout) {
 
             FirebaseAuth.getInstance().signOut();
-            getSharedPreferences("userLevel", Context.MODE_PRIVATE).edit().putString("position", "").apply();
+            getSharedPreferences("userLevel", Context.MODE_PRIVATE).edit().putString("position", "-1").apply();
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
             return true;

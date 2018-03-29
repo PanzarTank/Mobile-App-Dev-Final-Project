@@ -225,10 +225,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             editor.putString("position", "0");
                             editor.commit();
                             Toast.makeText(getApplicationContext(), "Donor login successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), DonorHomeActivity.class));
                         }
                     }
                     for (Employee e : workerList) {
-                        if (fireBaseEmail.equals(e.getEmail())) {
+                        if (fireBaseEmail.equals(e.getEmail()) & (currDonor == null)) {
                             currWorker = e;
                             if (e.getPosition() == 1) {
                                 //Go to worker home page
@@ -236,7 +237,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 editor.putString("position", "1");
                                 editor.putString("workerId", String.valueOf(e.getEmployeeID()));
                                 editor.commit();
-                                Toast.makeText(getApplicationContext(), "Employee login successful", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Employee login successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), WorkerHomeActivity.class));
                             } else if (e.getPosition() == 2) {
                                 //Go to organizer home page
                                 SharedPreferences.Editor editor = userLevel.edit();
@@ -244,6 +246,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 editor.putString("workerId", String.valueOf(e.getEmployeeID()));
                                 editor.commit();
                                 Toast.makeText(getApplicationContext(), "Organizer login successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), OrganizerHomeActivity.class));
                             }
                         }
                     }

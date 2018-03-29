@@ -12,7 +12,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Functions {
 
 
-    public static int getUsetLevel(Context context){
+    public static int getUserLevel(Context context){
 
         Context mContext = context;
         SharedPreferences shared = mContext.getSharedPreferences("userLevel", MODE_PRIVATE);

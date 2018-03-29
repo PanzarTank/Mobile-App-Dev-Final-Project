@@ -23,7 +23,6 @@ import com.example.shelterconnect.R;
 import com.example.shelterconnect.controller.items.CreateItemActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.items.UpdateItemActivity;
-import com.example.shelterconnect.model.Donation;
 import com.example.shelterconnect.util.Functions;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -98,7 +97,7 @@ public class MakeDonationActivity extends AppCompatActivity implements BillingPr
 
         if(id == R.id.home){
 
-            int userLevel = Functions.getUsetLevel(this);
+            int userLevel = Functions.getUserLevel(this);
 
             if(userLevel == 0 | userLevel == -1){
                 Intent myIntent = new Intent(this, DonorHomeActivity.class);
