@@ -37,6 +37,12 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_donor_home);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("DONOR HOMEPAGE");
+        toolbar.setSubtitle("");
+
         findViewById(R.id.viewDonationsButton).setOnClickListener(this);
 
         this.requestList = (ListView) findViewById(R.id.requestList);

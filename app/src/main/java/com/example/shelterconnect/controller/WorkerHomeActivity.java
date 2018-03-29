@@ -36,6 +36,12 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_worker_home);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("WORKER HOMEPAGE");
+        toolbar.setSubtitle("");
+
         findViewById(R.id.viewItemsButton).setOnClickListener(this);
 
         this.requestList = (ListView) findViewById(R.id.requestList);

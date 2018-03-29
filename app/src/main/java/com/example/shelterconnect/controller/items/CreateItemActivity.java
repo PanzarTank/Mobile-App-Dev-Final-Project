@@ -36,7 +36,7 @@ public class CreateItemActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("ITEMS");
+        toolbar.setTitle("ADD ITEMS");
         toolbar.setSubtitle("");
 
         this.itemName = findViewById(R.id.editName);
