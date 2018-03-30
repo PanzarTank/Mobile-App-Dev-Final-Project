@@ -170,7 +170,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     JSONArray workers = object.getJSONArray("workers");
 
                         refreshWorkerList(workers);
-                        System.out.println(workerList.get(0).getEmail());
                         refreshDonorList(donors);
 
 

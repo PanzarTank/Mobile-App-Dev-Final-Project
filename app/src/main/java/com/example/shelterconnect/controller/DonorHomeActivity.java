@@ -13,6 +13,7 @@ import android.view.Window;
 import android.widget.ListView;
 
 import com.example.shelterconnect.R;
+import com.example.shelterconnect.adapters.RequestAdapterDonor;
 import com.example.shelterconnect.controller.items.CreateItemActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.items.UpdateItemActivity;
@@ -157,7 +158,7 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
             ));
         }
 
-        RequestAdapter adapter = new RequestAdapter(this, this.requests);
+        RequestAdapterDonor adapter = new RequestAdapterDonor(this, this.requests);
         this.requestList.setAdapter(adapter);
     }
 

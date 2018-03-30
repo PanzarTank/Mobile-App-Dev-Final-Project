@@ -50,12 +50,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("SIGN-UP");
-        toolbar.setSubtitle("");
-
         builder = new AlertDialog.Builder(SignUpActivity.this).create();
         builder.setTitle("Alert");
         builder.setMessage("Please select your position at the bottom");

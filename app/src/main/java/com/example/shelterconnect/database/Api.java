@@ -19,12 +19,12 @@ public class Api {
     public static final String URL_CREATE_EMPLOYEE = ROOT_URL + "createworker";
     public static final String URL_READ_EMPLOYEE = ROOT_URL + "getworkers";
     public static final String URL_UPDATE_EMPLOYEE = ROOT_URL + "updateworker";
-    public static final String URL_DELETE_EMPLOYEE = ROOT_URL + "deleteworker&id=";
+    public static final String URL_DELETE_EMPLOYEE = ROOT_URL + "deleteworker&workerID=";
 
     public static final String URL_CREATE_REQUEST = ROOT_URL + "createrequest";
     public static final String URL_READ_REQUESTS = ROOT_URL + "getrequests";
     public static final String URL_UPDATE_REQUEST = ROOT_URL + "updaterequest";
-    public static final String URL_DELETE_REQUEST = ROOT_URL + "deleterequest&id=";
+    public static final String URL_DELETE_REQUEST = ROOT_URL + "deleterequest&rID=";
 
     public static final String URL_CREATE_DONOR = ROOT_URL + "createdonor";
     public static final String URL_READ_DONORS = ROOT_URL + "getdonors";

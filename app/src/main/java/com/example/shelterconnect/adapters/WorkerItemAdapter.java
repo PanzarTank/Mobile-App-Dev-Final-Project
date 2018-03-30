@@ -13,16 +13,20 @@ import com.example.shelterconnect.model.Employee;
 
 import java.util.ArrayList;
 
-public class WorkerItemAdapter extends ArrayAdapter<Employee> {
+public class WorkerItemAdapter extends ArrayAdapter<Employee> implements View.OnClickListener {
 
     private ArrayList<Employee> employee;
     private Context adapterContext;
     private Employee currEmployee;
+    private AlertDialog builder;
 
     public WorkerItemAdapter(Context context, ArrayList<Employee> employees) {
         super(context, R.layout.activity_worker_list, employees);
         adapterContext = context;
         this.employee = employees;
+
+        builder = new android.support.v7.app.AlertDialog.Builder(adapterContext).create();
+        builder.setTitle("Worker Information");
     }
 
     /**
@@ -32,7 +36,7 @@ public class WorkerItemAdapter extends ArrayAdapter<Employee> {
      * @return
      */
     @Override
-    public View getView(int indexPosition, View convertView, ViewGroup parent) {
+    public View getView(final int indexPosition, View convertView, ViewGroup parent) {
         View currentView = convertView;
         String employeePositionText = new String("");
 
@@ -43,6 +47,34 @@ public class WorkerItemAdapter extends ArrayAdapter<Employee> {
                 LayoutInflater vi = (LayoutInflater) this.adapterContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 currentView = vi.inflate(R.layout.worker_list_item, null);
             }
+
+            currentView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String worker = "";
+
+                    Employee myEmployee = employee.get(indexPosition);
+
+                    if (currEmployee.getPosition() == 1) {
+                        worker = ("WorkerID: " + myEmployee.getEmployeeID() + "\n\n" +
+                                "Name: " + myEmployee.getName() + "\n\n" +
+                                "Position: Worker" + "\n\n" +
+                                "Phone: " + myEmployee.getPhone() + "\n\n" +
+                                "Address: " + myEmployee.getAddress() + "\n\n" +
+                                "Email: " + myEmployee.getEmail());
+                    } else if (myEmployee.getPosition() == 2) {
+                        worker = ("WorkerID: " + myEmployee.getEmployeeID() + "\n\n" +
+                                "Name: " + myEmployee.getName() + "\n\n" +
+                                "Position: Organizer" + "\n\n" +
+                                "Phone: " + myEmployee.getPhone() + "\n\n" +
+                                "Address: " + myEmployee.getAddress() + "\n\n" +
+                                "Email: " + myEmployee.getEmail());
+                    }
+
+                    builder.setMessage(worker);
+                    builder.show();
+                }
+            });
 
             TextView employeeName = (TextView) currentView.findViewById(R.id.name);
             employeeName.setText(currEmployee.getName());
@@ -64,36 +96,32 @@ public class WorkerItemAdapter extends ArrayAdapter<Employee> {
             e.getCause();
         }
 
-        currentView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog builder;
-                String worker = "";
-
-                if (currEmployee.getPosition() == 1) {
-                    worker = ("WorkerID: " + currEmployee.getEmployeeID() + "\n\n" +
-                            "Name: " + currEmployee.getName() + "\n\n" +
-                            "Position: Worker" + "\n\n" +
-                            "Phone: " + currEmployee.getPhone() + "\n\n" +
-                            "Address: " + currEmployee.getAddress() + "\n\n" +
-                            "Email: " + currEmployee.getEmail());
-                } else if (currEmployee.getPosition() == 2) {
-                    worker = ("WorkerID: " + currEmployee.getEmployeeID() + "\n\n" +
-                            "Name: " + currEmployee.getName() + "\n\n" +
-                            "Position: Organizer" + "\n\n" +
-                            "Phone: " + currEmployee.getPhone() + "\n\n" +
-                            "Address: " + currEmployee.getAddress() + "\n\n" +
-                            "Email: " + currEmployee.getEmail());
-                }
-
-                builder = new android.support.v7.app.AlertDialog.Builder(adapterContext).create();
-                builder.setTitle("Worker Information");
-                builder.setMessage(worker);
-                builder.show();
-            }
-        });
 
         return currentView;
     }
 
+
+    @Override
+    public void onClick(View v) {
+        String worker = "";
+
+        if (currEmployee.getPosition() == 1) {
+            worker = ("WorkerID: " + currEmployee.getEmployeeID() + "\n\n" +
+                    "Name: " + currEmployee.getName() + "\n\n" +
+                    "Position: Worker" + "\n\n" +
+                    "Phone: " + currEmployee.getPhone() + "\n\n" +
+                    "Address: " + currEmployee.getAddress() + "\n\n" +
+                    "Email: " + currEmployee.getEmail());
+        } else if (currEmployee.getPosition() == 2) {
+            worker = ("WorkerID: " + currEmployee.getEmployeeID() + "\n\n" +
+                    "Name: " + currEmployee.getName() + "\n\n" +
+                    "Position: Organizer" + "\n\n" +
+                    "Phone: " + currEmployee.getPhone() + "\n\n" +
+                    "Address: " + currEmployee.getAddress() + "\n\n" +
+                    "Email: " + currEmployee.getEmail());
+        }
+
+        builder.setMessage(worker);
+        builder.show();
+    }
 }

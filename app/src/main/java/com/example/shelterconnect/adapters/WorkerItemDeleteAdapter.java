@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.shelterconnect.R;
+import com.example.shelterconnect.controller.TestHomeActivity;
 import com.example.shelterconnect.controller.WorkerListDeleteActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.items.UpdateItemActivity;
@@ -48,7 +49,7 @@ public class WorkerItemDeleteAdapter extends ArrayAdapter<Employee> {
      * @return
      */
     @Override
-    public View getView(int indexPosition, View convertView, ViewGroup parent) {
+    public View getView(final int indexPosition, View convertView, ViewGroup parent) {
         View currentView = convertView;
         String employeePositionText = new String("");
 
@@ -74,15 +75,34 @@ public class WorkerItemDeleteAdapter extends ArrayAdapter<Employee> {
             }
             employeePosition.setText(employeePositionText);
 
+
             TextView employeeEmail = (TextView) currentView.findViewById(R.id.email);
             employeeEmail.setText(currEmployee.getEmail());
 
             Button deleteButton = (Button) currentView.findViewById(R.id.deleteWorkerButton);
 
+            final Employee deletedEmployee = employee.get(indexPosition);
+            // Use the Builder class for convenient dialog construction
+            final android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder((WorkerListDeleteActivity) adapterContext);
+            builder.setMessage("Are you sure you want to delete?")
+                    .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            System.out.println("DELETING ITEM!!!");
+                            PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_EMPLOYEE + deletedEmployee.getEmployeeID(), null, Api.CODE_GET_REQUEST);
+                            System.out.println(Api.URL_DELETE_EMPLOYEE + deletedEmployee.getEmployeeID());
+                            request.execute();
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.dismiss();
+                        }
+                    }).create();
+
             deleteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    getDeleteDialog((WorkerListDeleteActivity)adapterContext).show();
+                    builder.show();
                 }
             });
 
@@ -92,27 +112,28 @@ public class WorkerItemDeleteAdapter extends ArrayAdapter<Employee> {
         }
 
 
-
         currentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog builder;
                 String worker = "";
 
-                if (currEmployee.getPosition() == 1) {
-                    worker = ("WorkerID: " + currEmployee.getEmployeeID() + "\n\n" +
-                            "Name: " + currEmployee.getName() + "\n\n" +
+                Employee myEmployee = employee.get(indexPosition);
+
+                if (myEmployee.getPosition() == 1) {
+                    worker = ("WorkerID: " + myEmployee.getEmployeeID() + "\n\n" +
+                            "Name: " + myEmployee.getName() + "\n\n" +
                             "Position: Worker" + "\n\n" +
-                            "Phone: " + currEmployee.getPhone() + "\n\n" +
-                            "Address: " + currEmployee.getAddress() + "\n\n" +
-                            "Email: " + currEmployee.getEmail());
-                } else if (currEmployee.getPosition() == 2) {
-                    worker = ("WorkerID: " + currEmployee.getEmployeeID() + "\n\n" +
-                            "Name: " + currEmployee.getName() + "\n\n" +
+                            "Phone: " + myEmployee.getPhone() + "\n\n" +
+                            "Address: " + myEmployee.getAddress() + "\n\n" +
+                            "Email: " + myEmployee.getEmail());
+                } else if (myEmployee.getPosition() == 2) {
+                    worker = ("WorkerID: " + myEmployee.getEmployeeID() + "\n\n" +
+                            "Name: " + myEmployee.getName() + "\n\n" +
                             "Position: Organizer" + "\n\n" +
-                            "Phone: " + currEmployee.getPhone() + "\n\n" +
-                            "Address: " + currEmployee.getAddress() + "\n\n" +
-                            "Email: " + currEmployee.getEmail());
+                            "Phone: " + myEmployee.getPhone() + "\n\n" +
+                            "Address: " + myEmployee.getAddress() + "\n\n" +
+                            "Email: " + myEmployee.getEmail());
                 }
 
                 builder = new AlertDialog.Builder(adapterContext).create();
@@ -149,9 +170,8 @@ public class WorkerItemDeleteAdapter extends ArrayAdapter<Employee> {
                 JSONObject object = new JSONObject(s);
                 if (!object.getBoolean("error")) {
                     Toast.makeText(adapterContext, "Delete Successful!", Toast.LENGTH_LONG).show();
-                    Intent myInent = new Intent(adapterContext, WorkerListDeleteActivity.class);
-                    AppCompatActivity app = new AppCompatActivity();
-                    app.startActivity(myInent);
+                    Intent myIntent = new Intent(adapterContext, WorkerListDeleteActivity.class);
+                    adapterContext.startActivity(myIntent);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -173,8 +193,8 @@ public class WorkerItemDeleteAdapter extends ArrayAdapter<Employee> {
     }
 
 
-
     private android.app.AlertDialog getDeleteDialog(Activity activity) {
+        // Employee myEmployee = employee.get(indexPosition);
         // Use the Builder class for convenient dialog construction
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(activity);
         builder.setMessage("Are you sure you want to delete?")
