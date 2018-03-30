@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/HomelessShelter.iml" filepath="$PROJECT_DIR$/HomelessShelter.iml" />
+      <module fileurl="file://C:\Users\JackHammer\Documents\android-app-project\HomelessShelter.iml" filepath="C:\Users\JackHammer\Documents\android-app-project\HomelessShelter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android-app-project.iml" filepath="$PROJECT_DIR$/android-app-project.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

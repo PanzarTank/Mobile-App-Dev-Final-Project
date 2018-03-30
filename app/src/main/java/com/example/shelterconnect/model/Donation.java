@@ -11,13 +11,13 @@ public class Donation {
     private int donationID;
 
     private String creditCardNum;
-    private Date expDate;
+    private String expDate;
     private int ccv;
     private int donorID;
     private int requestID;
     private double amountDonated;
 
-    public Donation(int donationID, String creditCardNum, Date expDate, int ccv, int donorID, int requestID, double amountDonated) {
+    public Donation(int donationID, String creditCardNum, String expDate, int ccv, int donorID, int requestID, double amountDonated) {
         if (donationID < 0 || creditCardNum.length() != 16 || creditCardNum == null || expDate == null || ccv < 0 ||
                 donorID < 0 || requestID < 0 || amountDonated < 0 ) {
             throw new IllegalArgumentException("Invalid input. Try again");
@@ -48,11 +48,11 @@ public class Donation {
         this.creditCardNum = creditCardNum;
     }
 
-    public Date getExpDate() {
+    public String getExpDate() {
         return expDate;
     }
 
-    public void setExpDate(Date expDate) {
+    public void setExpDate(String expDate) {
         this.expDate = expDate;
     }
 
