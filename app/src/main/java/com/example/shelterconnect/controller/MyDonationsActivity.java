@@ -8,7 +8,6 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.example.shelterconnect.R;
-import com.example.shelterconnect.adapters.ListViewAdapter;
 import com.example.shelterconnect.adapters.RequestAdapter;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
@@ -123,8 +122,6 @@ public class MyDonationsActivity extends AppCompatActivity implements View.OnCli
             ));
         }
 
-        ListViewAdapter adapter = new ListViewAdapter(this, this.donations);
-        this.donationList.setAdapter(adapter);
     }
 
     public void onClick(View v) {

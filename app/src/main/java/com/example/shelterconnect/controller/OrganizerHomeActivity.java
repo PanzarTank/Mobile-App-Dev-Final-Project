@@ -20,11 +20,14 @@ import com.example.shelterconnect.controller.items.UpdateItemActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Item;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import com.example.shelterconnect.adapters.RequestAdapter;
 import com.example.shelterconnect.model.Request;
 import com.example.shelterconnect.util.Functions;
@@ -118,6 +121,8 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
             return true;
+        } else if (id == R.id.editWorkers) {
+            startActivity(new Intent(this, WorkerListDeleteActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

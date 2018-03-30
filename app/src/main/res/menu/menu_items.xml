@@ -26,6 +26,12 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/editWorkers"
+        android:orderInCategory="203"
+        android:title="Edit Workers"
+        app:showAsAction="never" />
+
+    <item
         android:id="@+id/logout"
         android:title="Logout"
         android:orderInCategory="204"
