@@ -18,6 +18,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0">
 
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/itemToolbar"
+            android:layout_width="412dp"
+            android:layout_height="66dp"
+            android:background="?attr/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:theme="@style/ToolBarStyle" />
+
         <TextView
             android:id="@+id/receiveItemTitle"
             android:layout_width="match_parent"

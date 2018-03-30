@@ -41,7 +41,7 @@ public class ReceiveItemActivity extends AppCompatActivity {
     private Item foundItem = null;
 
 
-    private int requestIDInt = Integer.parseInt("4");
+    private int requestIDInt;
     private NumberPicker numberPicker;
     private TextView itemName;
     private Button receiveItemButton;
@@ -52,6 +52,7 @@ public class ReceiveItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive_item);
         String requestID = (String) getIntent().getExtras().get(RequestAdapter.REQUEST_ID_EXTRA);
+        this.requestIDInt = Integer.parseInt(requestID);
         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_READ_REQUESTS, null, Api.CODE_GET_REQUEST);
         request.execute();
 
