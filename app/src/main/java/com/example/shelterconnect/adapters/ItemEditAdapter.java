@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -41,7 +40,7 @@ public class ItemEditAdapter extends RecyclerView.Adapter<ItemEditAdapter.ItemVi
 
     private ArrayList<Item> items;
     private ItemViewHolder holder;
-    private int position;
+    private int itemPosition;
     private Item currItem;
     private Context adapterContext;
 
@@ -123,7 +122,7 @@ public class ItemEditAdapter extends RecyclerView.Adapter<ItemEditAdapter.ItemVi
         holder.deleteButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getDeleteDialog(((UpdateItemActivity)adapterContext)).show();
+                getDeleteDialog(((UpdateItemActivity)adapterContext), holder.getAdapterPosition()).show();
             }
         });
 
@@ -158,8 +157,8 @@ public class ItemEditAdapter extends RecyclerView.Adapter<ItemEditAdapter.ItemVi
                 if (!object.getBoolean("error")) {
                     Toast.makeText(adapterContext, "Delete Successful!", Toast.LENGTH_LONG).show();
                     Intent myInent = new Intent(adapterContext, ReadItemActivity.class);
-                    AppCompatActivity app = new AppCompatActivity();
-                    app.startActivity(myInent);
+
+                    adapterContext.startActivity(myInent);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -181,14 +180,14 @@ public class ItemEditAdapter extends RecyclerView.Adapter<ItemEditAdapter.ItemVi
     }
 
 
-    private AlertDialog getDeleteDialog(Activity activity){
-        // Use the Builder class for convenient dialog construction
+    private AlertDialog getDeleteDialog(Activity activity, final int position){
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-        builder.setMessage("Are you sure you want to delete?")
+        builder.setMessage("Are you sure you want to delete? ")
                 .setPositiveButton("Delete", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         System.out.println("DELETING ITEM!!!");
-                        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_ITEM + currItem.getItemID(), null, Api.CODE_GET_REQUEST);
+                        System.out.println(items.get(position).getItemID());
+                        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_DELETE_ITEM + items.get(position).getItemID(), null, Api.CODE_GET_REQUEST);
                         System.out.println(Api.URL_DELETE_ITEM+currItem.getItemID());
                         request.execute();
                     }
