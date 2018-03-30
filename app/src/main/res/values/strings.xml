@@ -28,4 +28,5 @@
     <string name="employee">Employee</string>
     <string name="email">Email</string>
     <string name="position">Position</string>
+    <string name="delete">Delete</string>
 </resources>

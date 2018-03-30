@@ -1,24 +1,27 @@
 package com.example.shelterconnect.controller;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.shelterconnect.R;
+import com.example.shelterconnect.adapters.WorkerItemDeleteAdapter;
 import com.example.shelterconnect.controller.items.CreateItemActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.items.UpdateItemActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
-import com.example.shelterconnect.model.Item;
+import com.example.shelterconnect.model.Employee;
+import com.example.shelterconnect.util.Functions;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,37 +30,28 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.example.shelterconnect.adapters.RequestAdapter;
-import com.example.shelterconnect.model.Request;
-import com.example.shelterconnect.util.Functions;
-import com.google.firebase.auth.FirebaseAuth;
+public class WorkerListDeleteActivity extends AppCompatActivity implements View.OnClickListener {
 
-public class DonorHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private ArrayList<Request> requests;
-    private ArrayList<Item> itemList;
-    private ListView requestList;
+    private ArrayList<Employee> employees;
+    private ListView employeeList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_donor_home);
+        setContentView(R.layout.activity_worker_list_delete);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("DONOR HOMEPAGE");
+        toolbar.setTitle("WORKER DELETION");
         toolbar.setSubtitle("");
 
-        findViewById(R.id.viewDonationsButton).setOnClickListener(this);
+        this.employeeList = (ListView) findViewById(R.id.workerList);
 
-        this.requestList = (ListView) findViewById(R.id.requestList);
+        this.employees = new ArrayList<>();
 
-        this.requests = new ArrayList<Request>();
-        this.itemList = new ArrayList<Item>();
-
-        readRequests();
+        readItems();
     }
 
     @Override
@@ -75,7 +69,12 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
 
             int userLevel = Functions.getUserLevel(this);
 
-            if (userLevel == 0 | userLevel == -1) {
+            if (userLevel == -1) {
+                Toast.makeText(getApplicationContext(), "Please sign in to go to your homepage", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(this, LoginActivity.class);
+                startActivity(myIntent);
+                return true;
+            } else if (userLevel == 0) {
                 Intent myIntent = new Intent(this, DonorHomeActivity.class);
                 startActivity(myIntent);
                 return true;
@@ -106,7 +105,7 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
         } else if (id == R.id.logout) {
 
             FirebaseAuth.getInstance().signOut();
-            getSharedPreferences("userLevel", Context.MODE_PRIVATE).edit().putString("position", "").apply();
+            getSharedPreferences("userLevel", Context.MODE_PRIVATE).edit().putString("position", "-1").apply();
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
             return true;
@@ -115,60 +114,37 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
         return super.onOptionsItemSelected(item);
     }
 
-    private void readRequests() {
-        DonorHomeActivity.PerformNetworkRequest request = new DonorHomeActivity.PerformNetworkRequest(Api.URL_READ_REQUESTS, null, Api.CODE_GET_REQUEST);
+    private void readItems() {
+        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_READ_EMPLOYEE, null, Api.CODE_GET_REQUEST);
         request.execute();
     }
 
-    private void refreshRequestList(JSONArray items) throws JSONException {
-        requests.clear();
-        //String itemName = "";
+    private void refreshItemList(JSONArray items) throws JSONException {
+        employees.clear();
 
         for (int i = 0; i < items.length(); i++) {
             JSONObject obj = items.getJSONObject(i);
 
             System.out.println(obj);
 
-            int activeInt = obj.getInt("active");
-            boolean active = false;
-
-            if (activeInt == 0) {
-                active = true;
-            } else if (activeInt == 1) {
-                active = false;
-            }
-
-            /* Attempt at matching id to name
-            for (Item item : itemList) {
-                if (obj.getInt("requestID") == item.getItemID()) {
-                    itemName = item.getName();
-                }
-            }
-            */
-
-            requests.add(new Request(
-                    obj.getInt("requestID"),
-                    obj.getInt("quantity"),
-                    obj.getDouble("amountNeeded"),
-                    obj.getDouble("amountRaised"),
+            employees.add(new Employee(
                     obj.getInt("workerID"),
-                    obj.getInt("itemID"),
-                    active
+                    obj.getString("name"),
+                    obj.getInt("position"),
+                    obj.getString("phone"),
+                    obj.getString("email"),
+                    obj.getString("address")
+
             ));
         }
 
-        RequestAdapter adapter = new RequestAdapter(this, this.requests);
-        this.requestList.setAdapter(adapter);
+        WorkerItemDeleteAdapter adapter = new WorkerItemDeleteAdapter(this, this.employees);
+        this.employeeList.setAdapter(adapter);
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.viewDonationsButton:
-                startActivity(new Intent(this, MyDonationsActivity.class));
+    public void onClick(View v) {
 
-                break;
-        }
     }
 
     private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
@@ -194,7 +170,7 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
                 JSONObject object = new JSONObject(s);
 
                 if (!object.getBoolean("error")) {
-                    refreshRequestList(object.getJSONArray("requests"));
+                    refreshItemList(object.getJSONArray("workers"));
                 }
 
             } catch (JSONException e) {

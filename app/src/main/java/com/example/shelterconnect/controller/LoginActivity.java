@@ -7,18 +7,25 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.shelterconnect.R;
+import com.example.shelterconnect.controller.items.CreateItemActivity;
+import com.example.shelterconnect.controller.items.ReadItemActivity;
+import com.example.shelterconnect.controller.items.UpdateItemActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Donor;
 import com.example.shelterconnect.model.Employee;
+import com.example.shelterconnect.util.Functions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -48,6 +55,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        toolbar.setTitle("LOGIN");
+        toolbar.setSubtitle("");
+
         mAuth = FirebaseAuth.getInstance();
         signInEmail = findViewById(R.id.signInEmail);
         signInPassword = findViewById(R.id.signInPassword);
@@ -66,6 +79,66 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         this.donorList = new ArrayList<Donor>();
         this.workerList = new ArrayList<Employee>();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_items, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.home) {
+
+            int userLevel = Functions.getUserLevel(this);
+
+            if (userLevel == -1) {
+                Toast.makeText(getApplicationContext(), "Please sign in to go to your homepage", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(this, LoginActivity.class);
+                startActivity(myIntent);
+                return true;
+            } else if (userLevel == 0) {
+                Intent myIntent = new Intent(this, DonorHomeActivity.class);
+                startActivity(myIntent);
+                return true;
+            } else if (userLevel == 1) {
+                Intent myIntent = new Intent(this, WorkerHomeActivity.class);
+                startActivity(myIntent);
+                return true;
+            } else if (userLevel == 2) {
+                Intent myIntent = new Intent(this, OrganizerHomeActivity.class);
+                startActivity(myIntent);
+                return true;
+            }
+
+        } else if (id == R.id.listItems) {
+            Intent myIntent = new Intent(this, ReadItemActivity.class);
+            startActivity(myIntent);
+            return true;
+
+        } else if (id == R.id.addItem) {
+            Intent myIntent = new Intent(this, CreateItemActivity.class);
+            startActivity(myIntent);
+            return true;
+
+        } else if (id == R.id.editItems) {
+            Intent myIntent = new Intent(this, UpdateItemActivity.class);
+            startActivity(myIntent);
+            return true;
+        } else if (id == R.id.logout) {
+
+            FirebaseAuth.getInstance().signOut();
+            getSharedPreferences("userLevel", Context.MODE_PRIVATE).edit().putString("position", "-1").apply();
+            Intent myIntent = new Intent(this, LoginActivity.class);
+            startActivity(myIntent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
@@ -225,10 +298,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                             editor.putString("position", "0");
                             editor.commit();
                             Toast.makeText(getApplicationContext(), "Donor login successful", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), DonorHomeActivity.class));
                         }
                     }
                     for (Employee e : workerList) {
-                        if (fireBaseEmail.equals(e.getEmail())) {
+                        if (fireBaseEmail.equals(e.getEmail()) & (currDonor == null)) {
                             currWorker = e;
                             if (e.getPosition() == 1) {
                                 //Go to worker home page
@@ -236,7 +310,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 editor.putString("position", "1");
                                 editor.putString("workerId", String.valueOf(e.getEmployeeID()));
                                 editor.commit();
-                                Toast.makeText(getApplicationContext(), "Employee login successful", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Employee login successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), WorkerHomeActivity.class));
                             } else if (e.getPosition() == 2) {
                                 //Go to organizer home page
                                 SharedPreferences.Editor editor = userLevel.edit();
@@ -244,6 +319,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                                 editor.putString("workerId", String.valueOf(e.getEmployeeID()));
                                 editor.commit();
                                 Toast.makeText(getApplicationContext(), "Organizer login successful", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(getApplicationContext(), OrganizerHomeActivity.class));
                             }
                         }
                     }

@@ -9,10 +9,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.SimpleAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +32,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,20 +49,21 @@ public class CreateRequestActivity extends AppCompatActivity {
     private TextView itemQuantity;
     private TextView workID;
     private TextView itemID;
+    Spinner itemNameSpinner;
     private Boolean active = true;
     private String num;
 
-    private Map<Integer, String> itemIdNameMap;
-    private Map<Integer, String> itemIdQuantityMap;
+    private Map<String, Integer> itemIdNameMap;
+    private Map<String, Integer> itemIdQuantityMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_request);
         String workerId =  getSharedPreferences("userLevel", Context.MODE_PRIVATE).getString("workerId", "");
-
         itemIdNameMap = new HashMap<>();
         itemIdQuantityMap = new HashMap<>();
+
 
         GetItemNetworkRequest getItemNetworkRequest = new GetItemNetworkRequest(Api.URL_READ_ITEMS, Api.CODE_GET_REQUEST);
         getItemNetworkRequest.execute();
@@ -64,15 +73,21 @@ public class CreateRequestActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("Create Request");
         toolbar.setSubtitle("");
-
+        itemNameSpinner = findViewById(R.id.itemNameSpinner);
         this.reqAmt = findViewById(R.id.requiredAmount);
         this.raiAmt = findViewById(R.id.raisedAmount);
         this.itemQuantity = findViewById(R.id.quantity);
         this.workID = findViewById(R.id.workerID);
-        workID.setText(workerId);
         this.itemID = findViewById(R.id.itemID);
+
+        workID.setText(workerId);
+        raiAmt.setText(String.valueOf("0.0"));
+
+
         //this.active = findViewById(R.id.active);
         itemQuantity.setInputType(InputType.TYPE_NULL);
+        raiAmt.setInputType(InputType.TYPE_NULL);
+        itemID.setInputType(InputType.TYPE_NULL);
       //  workID.setInputType(InputType.TYPE_NULL);
 
 
@@ -85,30 +100,14 @@ public class CreateRequestActivity extends AppCompatActivity {
             }
         });
 
-        itemID.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-            @Override
-            public void onFocusChange(View v, boolean hasFocus) {
 
-               if (!itemID.getText().toString().isEmpty()) {
-                    try {
-                        num = itemID.getText().toString().trim();
-                        Integer value = Integer.valueOf(itemID.getText().toString());
-                        itemID.setText(itemIdNameMap.get(value));
-                        itemQuantity.setText(itemIdQuantityMap.get(value));
-                    } catch (NumberFormatException e) {
-                        itemID.setError("Please enter Item Id.");
-                        itemID.requestFocus();
-                    }
-                }
-            }
-        });
     }
 
     private void createItem() {
         String rq = this.reqAmt.getText().toString().trim();
         String ra = this.raiAmt.getText().toString().trim();
         String wk = this.workID.getText().toString().trim();
-        String it = num;
+        String it = String.valueOf(itemIdNameMap.get(itemNameSpinner.getSelectedItem().toString()));
         //String ac = this.active.getText().toString().trim();
         String quantity = this.itemQuantity.getText().toString().trim();
 
@@ -186,9 +185,24 @@ public class CreateRequestActivity extends AppCompatActivity {
 
         for (int i = 0; i < items.length(); i++) {
             JSONObject obj = items.getJSONObject(i);
-            itemIdNameMap.put(obj.getInt("itemID"), obj.getString("name"));
-            itemIdQuantityMap.put(obj.getInt("itemID"), obj.getString("quantity"));
+            itemIdNameMap.put(obj.getString("name"), obj.getInt("itemID"));
+            itemIdQuantityMap.put(obj.getString("name"), obj.getInt("quantity"));
         }
+
+        List<String> itemNames = new ArrayList<>(itemIdNameMap.keySet());
+        itemNameSpinner.setAdapter( new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, itemNames));
+        itemNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                itemID.setText(String.valueOf(itemIdNameMap.get(itemNameSpinner.getSelectedItem().toString())));
+                itemQuantity.setText(String.valueOf(itemIdQuantityMap.get(itemNameSpinner.getSelectedItem().toString())));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
     private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
