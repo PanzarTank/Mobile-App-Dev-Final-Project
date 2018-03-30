@@ -99,12 +99,12 @@ public class UpdateRequestActivity extends AppCompatActivity {
 
 
 
-        if (simpleSwitch.isChecked() == true) {
-            active = true;
-        }
-        else {
-            active = false;
-        }
+ //       if (simpleSwitch.isChecked() == true) {
+   //         active = true;
+      //  }
+       // else {
+        //    active = false;
+        //}
 
         Log.d("active show value", String.valueOf(simpleSwitch.isChecked()));
 

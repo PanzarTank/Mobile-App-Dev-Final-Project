@@ -5,7 +5,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.adapters.RequestAdapter;
+import com.example.shelterconnect.adapters.RequestAdapterDonor;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Item;
@@ -29,7 +29,7 @@ import java.util.HashMap;
  * Created by parth on 18-03-2018.
  */
 
-public class GetRequestActivity extends AppCompatActivity {
+public class DonorGetRequestActivity extends AppCompatActivity {
 
 
     ArrayList<Request> requestList;
@@ -111,20 +111,18 @@ public class GetRequestActivity extends AppCompatActivity {
             System.out.println(obj);
 
             int activeInt = obj.getInt("active");
-            Log.d("w is active", String.valueOf(activeInt));
-            boolean active = true;
+            boolean active = false;
 
             if(activeInt == 0){
                 active = true;
             } else if(activeInt == 1){
                 active = false;
             }
-
             int checkNeeded = obj.getInt("amountNeeded");
             int checkquantity = obj.getInt("quantity");
 
-            if (checkquantity >= checkNeeded)
-          {active = false;}
+            if (checkNeeded <= checkquantity)
+            { active = false;}
 
             Request r = new Request(obj.getInt("requestID"),
                     obj.getInt("quantity"),
@@ -143,7 +141,7 @@ public class GetRequestActivity extends AppCompatActivity {
 
         //MATCH ITEM ID TO NAME
 
-        RequestAdapter adapter = new RequestAdapter(this, this.requestList);
+        RequestAdapterDonor adapter = new RequestAdapterDonor(this, this.requestList);
         this.myListView.setAdapter(adapter);
     }
 

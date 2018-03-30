@@ -14,8 +14,12 @@ import com.example.shelterconnect.R;
 import com.example.shelterconnect.controller.items.CreateItemActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.items.UpdateItemActivity;
+//import com.example.shelterconnect.controller.requests.ClosedRequestActivity;
 import com.example.shelterconnect.controller.requests.CreateRequestActivity;
+import com.example.shelterconnect.controller.requests.DonorGetRequestActivity;
 import com.example.shelterconnect.controller.requests.GetRequestActivity;
+import com.example.shelterconnect.controller.requests.OrganizerGetRequestActivity;
+import com.example.shelterconnect.controller.requests.WorkerGetRequestActivity;
 import com.example.shelterconnect.util.Functions;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -42,6 +46,10 @@ public class TestHomeActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.goWorkerHome).setOnClickListener(this);
         findViewById(R.id.goOrganizerHome).setOnClickListener(this);
         findViewById(R.id.goWorkerListDelete).setOnClickListener(this);
+        findViewById(R.id.donorViewRequest).setOnClickListener(this);
+        findViewById(R.id.organizerViewRequest).setOnClickListener(this);
+        findViewById(R.id.workerViewRequest).setOnClickListener(this);
+     //   findViewById(R.id.closedViewRequest).setOnClickListener(this);
     }
 
     @Override
@@ -84,10 +92,28 @@ public class TestHomeActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(this, OrganizerHomeActivity.class));
 
                 break;
+
             case R.id.goWorkerListDelete:
                 startActivity(new Intent(this, WorkerListDeleteActivity.class));
 
                 break;
+            case R.id.donorViewRequest:
+                startActivity(new Intent(this, DonorGetRequestActivity.class));
+
+                break;
+            case R.id.organizerViewRequest:
+                startActivity(new Intent(this, OrganizerGetRequestActivity.class));
+
+                break;
+            case R.id.workerViewRequest:
+                startActivity(new Intent(this, WorkerGetRequestActivity.class));
+
+                break;
+          //  case R.id.closedViewRequest:
+            //    startActivity(new Intent(this, ClosedRequestActivity.class));
+
+              //  break;
+
         }
     }
 

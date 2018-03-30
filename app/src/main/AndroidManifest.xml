@@ -90,6 +90,17 @@
         <activity
             android:name=".controller.WorkerListDeleteActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+
+        <activity
+            android:name=".controller.requests.DonorGetRequestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.requests.OrganizerGetRequestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".controller.requests.WorkerGetRequestActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
     </application>
 
 </manifest>

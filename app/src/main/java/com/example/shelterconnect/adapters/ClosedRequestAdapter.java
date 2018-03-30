@@ -24,7 +24,7 @@ import java.util.ArrayList;
  * Created by parth on 20-03-2018.
  */
 
-public class RequestAdapterOrganizer extends ArrayAdapter<Request> {
+public class ClosedRequestAdapter extends ArrayAdapter<Request> {
 
     public static final String REQUEST_ID_EXTRA = "requestID";
     public static final String ITEM_NAME_EXTRA = "itemName";
@@ -35,7 +35,7 @@ public class RequestAdapterOrganizer extends ArrayAdapter<Request> {
     private ArrayList<Request> requests;
     private Context adapterContext;
 
-    public RequestAdapterOrganizer(Context context, ArrayList<Request> requests) {
+    public ClosedRequestAdapter(Context context, ArrayList<Request> requests) {
         super(context, R.layout.activity_open_requests, requests);
         adapterContext = context;
         this.requests = requests;
@@ -122,10 +122,10 @@ public class RequestAdapterOrganizer extends ArrayAdapter<Request> {
             Boolean x = (currRequest.isActive());
 
             if (x == true)
-            {itemName.setTextColor(Color.parseColor("RED"));
-                requestNeeded.setTextColor(Color.parseColor("RED"));
-                requestRaised.setTextColor(Color.parseColor("RED"));
-                inStockQuantity.setTextColor(Color.parseColor("RED"));
+            {itemName.setVisibility(View.GONE);
+                requestNeeded.setVisibility(View.GONE);
+                requestRaised.setVisibility(View.GONE);
+                inStockQuantity.setVisibility(View.GONE);
             }
             else {
                 itemName.setTextColor(Color.parseColor("BLUE"));
