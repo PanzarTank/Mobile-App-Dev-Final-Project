@@ -20,9 +20,11 @@ import com.example.shelterconnect.controller.items.UpdateItemActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Item;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -177,7 +179,7 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
 
             System.out.println(obj);
 
-            Item currItem = new Item(obj.getInt("itemID"),  obj.getString("name"),
+            Item currItem = new Item(obj.getInt("itemID"), obj.getString("name"),
                     obj.getDouble("price"), obj.getInt("quantity"));
 
             this.itemIDNameMap.put(currItem.getItemID(), currItem.getName());
@@ -204,6 +206,13 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
                 active = false;
             }
 
+            int checkNeeded = obj.getInt("amountNeeded");
+            int checkquantity = obj.getInt("quantity");
+
+            if (checkNeeded <= checkquantity) {
+                active = false;
+            }
+
             Request newRequest = new Request(
                     obj.getInt("requestID"),
                     obj.getInt("quantity"),
@@ -214,11 +223,11 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
                     active
             );
 
-            if(this.itemIDNameMap.get(newRequest.getItemID()) != null){
+            if (this.itemIDNameMap.get(newRequest.getItemID()) != null) {
                 newRequest.setName(this.itemIDNameMap.get(newRequest.getItemID()));
             }
 
-            if(this.itemIDPriceMap.get(newRequest.getItemID()) != null){
+            if (this.itemIDPriceMap.get(newRequest.getItemID()) != null) {
                 newRequest.setItemPrice(this.itemIDPriceMap.get(obj.getInt("itemID")));
             }
 

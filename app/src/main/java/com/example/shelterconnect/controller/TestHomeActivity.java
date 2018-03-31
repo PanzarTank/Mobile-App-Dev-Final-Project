@@ -95,7 +95,6 @@ public class TestHomeActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(this, OrganizerHomeActivity.class));
 
                 break;
-
             case R.id.goWorkerListDelete:
                 startActivity(new Intent(this, WorkerListDeleteActivity.class));
 

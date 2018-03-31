@@ -14,7 +14,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.shelterconnect.R;
-import com.example.shelterconnect.adapters.RequestAdapterWorker;
+import com.example.shelterconnect.adapters.RequestAdapterOrganizer;
 import com.example.shelterconnect.controller.items.CreateItemActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.items.UpdateItemActivity;
@@ -83,7 +83,8 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
         MenuItem editItems = menu.findItem(R.id.editItems);
         MenuItem editWorkers = menu.findItem(R.id.editWorkers);
         MenuItem logoutMenu = menu.findItem(R.id.logout);
-        MenuItem presentationButton = menu.findItem(R.id.presentation);;
+        MenuItem presentationButton = menu.findItem(R.id.presentation);
+        ;
 
         presentationButton.setVisible(true);
 
@@ -220,6 +221,13 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
                 active = false;
             }
 
+            int checkNeeded = obj.getInt("amountNeeded");
+            int checkquantity = obj.getInt("quantity");
+
+            if (checkNeeded <= checkquantity) {
+                active = false;
+            }
+
             Request newRequest = new Request(
                     obj.getInt("requestID"),
                     obj.getInt("quantity"),
@@ -241,7 +249,7 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
             requests.add(newRequest);
         }
 
-        RequestAdapterWorker adapter = new RequestAdapterWorker(this, this.requests);
+        RequestAdapterOrganizer adapter = new RequestAdapterOrganizer(this, this.requests);
         this.requestList.setAdapter(adapter);
     }
 
