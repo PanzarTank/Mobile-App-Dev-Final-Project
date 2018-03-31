@@ -96,12 +96,12 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
             editWorkers.setVisible(true);
             logoutMenu.setVisible(true);
         } else {
-            homeMenu.setVisible(false);
+            homeMenu.setVisible(true);
             listItems.setVisible(false);
             addItem.setVisible(false);
             editItems.setVisible(false);
             editWorkers.setVisible(false);
-            logoutMenu.setVisible(false);
+            logoutMenu.setVisible(true);
         }
         return true;
     }

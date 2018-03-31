@@ -33,6 +33,8 @@ import com.example.shelterconnect.model.Request;
 import com.example.shelterconnect.util.Functions;
 import com.google.firebase.auth.FirebaseAuth;
 
+import junit.framework.Test;
+
 public class OrganizerHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ArrayList<Request> requests;
@@ -81,6 +83,9 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
         MenuItem editItems = menu.findItem(R.id.editItems);
         MenuItem editWorkers = menu.findItem(R.id.editWorkers);
         MenuItem logoutMenu = menu.findItem(R.id.logout);
+        MenuItem presentationButton = menu.findItem(R.id.presentation);;
+
+        presentationButton.setVisible(true);
 
         if (userLevel == 0) {
             homeMenu.setVisible(true);
@@ -103,13 +108,14 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
             editItems.setVisible(true);
             editWorkers.setVisible(true);
             logoutMenu.setVisible(true);
+
         } else {
-            homeMenu.setVisible(false);
+            homeMenu.setVisible(true);
             listItems.setVisible(false);
             addItem.setVisible(false);
             editItems.setVisible(false);
             editWorkers.setVisible(false);
-            logoutMenu.setVisible(false);
+            logoutMenu.setVisible(true);
         }
         return true;
     }
@@ -165,6 +171,8 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
             return true;
         } else if (id == R.id.editWorkers & (userLevel > 1)) {
             startActivity(new Intent(this, WorkerListDeleteActivity.class));
+        } else if (id == R.id.presentation) {
+            startActivity(new Intent(this, TestHomeActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

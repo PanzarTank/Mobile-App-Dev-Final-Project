@@ -37,4 +37,10 @@
         android:orderInCategory="204"
         />
 
+    <item
+        android:id="@+id/presentation"
+        android:orderInCategory="204"
+        android:title="@string/special_button"
+        android:visible="false" />
+
 </menu>

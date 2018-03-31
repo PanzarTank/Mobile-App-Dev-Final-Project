@@ -49,21 +49,21 @@
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
-                    android:id="@+id/textViewNeededLabel"
-                    android:layout_width="320dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="Needed"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
-
-                <TextView
                     android:id="@+id/textViewAchievedLabel"
                     android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="left"
                     android:text="Achieved"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+                <TextView
+                    android:id="@+id/textViewNeededLabel"
+                    android:layout_width="320dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="left"
+                    android:text="Needed"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
