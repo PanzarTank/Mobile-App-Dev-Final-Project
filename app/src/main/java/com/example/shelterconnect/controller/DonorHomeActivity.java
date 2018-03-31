@@ -1,10 +1,10 @@
 package com.example.shelterconnect.controller;
 
 import android.content.Context;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +20,9 @@ import com.example.shelterconnect.controller.items.UpdateItemActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Item;
+import com.example.shelterconnect.model.Request;
+import com.example.shelterconnect.util.Functions;
+import com.google.firebase.auth.FirebaseAuth;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,16 +31,13 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import com.example.shelterconnect.adapters.RequestAdapter;
-import com.example.shelterconnect.model.Request;
-import com.example.shelterconnect.util.Functions;
-import com.google.firebase.auth.FirebaseAuth;
-
 public class DonorHomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ArrayList<Request> requests;
     private ArrayList<Item> itemList;
     private ListView requestList;
+    private HashMap<Integer, String> itemIDNameMap;
+    private HashMap<Integer, Double> itemIDPriceMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +57,8 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
 
         this.requests = new ArrayList<Request>();
         this.itemList = new ArrayList<Item>();
+        this.itemIDNameMap = new HashMap<>();
+        this.itemIDPriceMap = new HashMap<>();
 
         readRequests();
     }
@@ -121,14 +123,33 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
         request.execute();
     }
 
-    private void refreshRequestList(JSONArray items) throws JSONException {
-        requests.clear();
-        //String itemName = "";
+    private void refreshItemList(JSONArray items) throws JSONException {
+        itemList.clear();
+        this.itemIDPriceMap.clear();
+        this.itemIDNameMap.clear();
 
         for (int i = 0; i < items.length(); i++) {
             JSONObject obj = items.getJSONObject(i);
 
             System.out.println(obj);
+
+            Item currItem = new Item(obj.getInt("itemID"),  obj.getString("name"),
+                    obj.getDouble("price"), obj.getInt("quantity"));
+
+            this.itemIDNameMap.put(currItem.getItemID(), currItem.getName());
+            this.itemIDPriceMap.put(currItem.getItemID(), currItem.getPrice());
+
+            itemList.add(currItem);
+        }
+
+        System.out.println(this.itemIDPriceMap);
+    }
+
+    private void refreshRequestList(JSONArray items) throws JSONException {
+        requests.clear();
+
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject obj = items.getJSONObject(i);
 
             int activeInt = obj.getInt("active");
             boolean active = false;
@@ -139,15 +160,7 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
                 active = false;
             }
 
-            /* Attempt at matching id to name
-            for (Item item : itemList) {
-                if (obj.getInt("requestID") == item.getItemID()) {
-                    itemName = item.getName();
-                }
-            }
-            */
-
-            requests.add(new Request(
+            Request newRequest = new Request(
                     obj.getInt("requestID"),
                     obj.getInt("quantity"),
                     obj.getDouble("amountNeeded"),
@@ -155,7 +168,17 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
                     obj.getInt("workerID"),
                     obj.getInt("itemID"),
                     active
-            ));
+            );
+
+            if(this.itemIDNameMap.get(newRequest.getItemID()) != null){
+                newRequest.setName(this.itemIDNameMap.get(newRequest.getItemID()));
+            }
+
+            if(this.itemIDPriceMap.get(newRequest.getItemID()) != null){
+                newRequest.setItemPrice(this.itemIDPriceMap.get(obj.getInt("itemID")));
+            }
+
+            requests.add(newRequest);
         }
 
         RequestAdapterDonor adapter = new RequestAdapterDonor(this, this.requests);
@@ -167,7 +190,6 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
         switch (view.getId()) {
             case R.id.viewDonationsButton:
                 startActivity(new Intent(this, MyDonationsActivity.class));
-
                 break;
         }
     }
@@ -195,6 +217,7 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
                 JSONObject object = new JSONObject(s);
 
                 if (!object.getBoolean("error")) {
+                    refreshItemList(object.getJSONArray("items"));
                     refreshRequestList(object.getJSONArray("requests"));
                 }
 

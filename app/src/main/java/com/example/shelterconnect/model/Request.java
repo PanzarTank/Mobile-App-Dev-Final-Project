@@ -1,10 +1,12 @@
 package com.example.shelterconnect.model;
 
+import java.io.Serializable;
+
 /**
  * Request object to represent model
  * Created by daniel burkhart on 2/12/18.
  */
-public class Request {
+public class Request implements Serializable {
 
     private int requestID;
 
@@ -13,6 +15,7 @@ public class Request {
     private double amountRaised;
     private int employeeID;
     private String name;
+    private double itemPrice;
     private int itemID;
     private boolean active;
 
@@ -94,6 +97,14 @@ public class Request {
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public double getItemPrice(){
+        return this.itemPrice;
+    }
+
+    public void setItemPrice(double price){
+        this.itemPrice = price;
     }
 
 }

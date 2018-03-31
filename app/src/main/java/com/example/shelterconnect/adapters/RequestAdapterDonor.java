@@ -12,12 +12,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.shelterconnect.R;
-import com.example.shelterconnect.controller.ReceiveItemActivity;
-import com.example.shelterconnect.controller.items.CreateItemActivity;
-import com.example.shelterconnect.controller.items.ReadItemActivity;
-import com.example.shelterconnect.controller.requests.UpdateRequestActivity;
+import com.example.shelterconnect.controller.MakeDonationActivity;
 import com.example.shelterconnect.model.Request;
-import com.example.shelterconnect.adapters.ItemAdapter;
+
 import java.util.ArrayList;
 
 /**
@@ -46,16 +43,12 @@ public class RequestAdapterDonor extends ArrayAdapter<Request> {
         View currentView = convertView;
 
         try {
-            Request currRequest = this.requests.get(indexPosition);
+            final Request currRequest = this.requests.get(indexPosition);
 
             if (currentView == null) {
                 LayoutInflater vi = (LayoutInflater) this.adapterContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
                 currentView = vi.inflate(R.layout.request_list_donor, null);
             }
-
-
-
 
             final TextView itemName = currentView.findViewById(R.id.requestID);
             itemName.setText(currRequest.getName());
@@ -82,37 +75,32 @@ public class RequestAdapterDonor extends ArrayAdapter<Request> {
 
             TextView requestActive = currentView.findViewById(R.id.act);
             requestActive.setText(Boolean.toString(currRequest.isActive()));
+            Button makeDonationBtn = currentView.findViewById(R.id.donateNowButton);
 
-            Button receiveBtn = currentView.findViewById(R.id.donateNowButton);
-
-
-            receiveBtn.setOnClickListener(new View.OnClickListener(){
+            makeDonationBtn.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v) {
-                    Intent i = new Intent(getContext(), ReceiveItemActivity.class);
-
+                    Intent i = new Intent(getContext(), MakeDonationActivity.class);
                     i.putExtra(REQUEST_ID_EXTRA, String.valueOf(requestIDLabel));
+                    i.putExtra("requestObject", currRequest);
                     adapterContext.startActivity(i);
                     Log.d("requestID value", String.valueOf(requestIDLabel));
                 }
             });
 
-
             Boolean x = (currRequest.isActive());
 
-            if (x == true)
-            {itemName.setTextColor(Color.parseColor("RED"));
+            if (x) {
+                itemName.setTextColor(Color.parseColor("RED"));
                 requestNeeded.setTextColor(Color.parseColor("RED"));
                 requestRaised.setTextColor(Color.parseColor("RED"));
                 inStockQuantity.setTextColor(Color.parseColor("RED"));
-            }
-            else {
+            } else {
                 itemName.setVisibility(View.GONE);
                 requestNeeded.setVisibility(View.GONE);
                 requestRaised.setVisibility(View.GONE);
                 inStockQuantity.setVisibility(View.GONE);
-                receiveBtn.setVisibility(View.GONE);
-
+                makeDonationBtn.setVisibility(View.GONE);
             }
 
         } catch (Exception e) {
