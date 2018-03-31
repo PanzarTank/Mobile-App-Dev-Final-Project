@@ -17,11 +17,11 @@
     <list default="true" id="9b613f95-714d-4371-ac9f-c430d638d9d9" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/DonorHomeActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/DonorHomeActivity.java" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/LoginActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/LoginActivity.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/MakeDonationActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/MakeDonationActivity.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/MyDonationsActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/MyDonationsActivity.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/NewRequestActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/NewRequestActivity.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/OpenRequestsActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/OpenRequestsActivity.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/OrganizerHomeActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/OrganizerHomeActivity.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/ReceiveItemActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/ReceiveItemActivity.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUpActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUpActivity.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/TestHomeActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/TestHomeActivity.java" />
@@ -31,6 +31,7 @@
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/CreateItemActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/CreateItemActivity.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/ReadItemActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/ReadItemActivity.java" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/UpdateItemActivity.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/UpdateItemActivity.java" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/util/Functions.java" afterPath="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/util/Functions.java" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -69,11 +70,10 @@
       <file leaf-file-name="OrganizerHomeActivity.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/OrganizerHomeActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="62" column="63" lean-forward="false" selection-start-line="62" selection-start-column="63" selection-end-line="62" selection-end-column="63" />
+            <state relative-caret-position="254">
+              <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
               <folding>
                 <element signature="method#onCreateOptionsMenu#0;class#OrganizerHomeActivity#0" expanded="false" />
-                <element signature="method#onOptionsItemSelected#0;class#OrganizerHomeActivity#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -2024,11 +2024,9 @@
         <option value="$PROJECT_DIR$/src/main/res/layout/worker_delete_list_item.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_worker_list_delete.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_new_request.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/util/Functions.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/FontManager.java" />
         <option value="$PROJECT_DIR$/src/main/res/values/icons.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" />
-        <option value="$PROJECT_DIR$/src/main/res/menu/menu_items.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_test_home.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/database/Api.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/adapters/WorkerItemDeleteAdapter.java" />
@@ -2044,15 +2042,15 @@
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_worker_home.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/adapters/RequestAdapterDonor.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/request_list_organizer.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/OrganizerHomeActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/adapters/RequestAdapterOrganizer.java" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_organizer_home.xml" />
         <option value="$PROJECT_DIR$/src/main/res/layout/activity_open_requests.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/CreateItemActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/ReadItemActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/util/Functions.java" />
+        <option value="$PROJECT_DIR$/src/main/res/menu/menu_items.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/LoginActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/OrganizerHomeActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/UpdateItemActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/DonorHomeActivity.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/LoginActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/MakeDonationActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/MyDonationsActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/NewRequestActivity.java" />
@@ -2063,6 +2061,8 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/WorkerHomeActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/WorkerListActivity.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/WorkerListDeleteActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/CreateItemActivity.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/ReadItemActivity.java" />
       </list>
     </option>
   </component>
@@ -2122,7 +2122,22 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="shelterconnect" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="items" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="shelterconnect" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="database" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="app" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="shelterconnect" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="app" type="1abcf292:AndroidViewProjectNode" />
@@ -2183,7 +2198,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="device.picker.selection" value="Nexus_5X_API_26" />
     <property name="android.profiler.active" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1522490436440" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1522492683472" />
     <property name="sync.plugin.last.upgrade.timestamp" value="1522435722050" />
   </component>
   <component name="RecentsManager">
@@ -2572,18 +2587,18 @@
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21666667" sideWeight="0.5533049" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33020833" sideWeight="0.34594882" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.49573562" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.49573562" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32987553" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33020833" sideWeight="0.6593817" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Logcat" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33020833" sideWeight="0.6540512" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Captures" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17270789" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21666667" sideWeight="0.4466951" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.48081023" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21666667" sideWeight="0.4424307" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32916668" sideWeight="0.47867805" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -2611,39 +2626,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/res/menu/menu_home_page.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/menu/menu_items.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="35" lean-forward="false" selection-start-line="31" selection-start-column="35" selection-end-line="31" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/res/layout/activity_test_home.xml">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="36" lean-forward="false" selection-start-line="13" selection-start-column="36" selection-end-line="13" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="android-designer2">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/database/Api.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -2933,34 +2915,42 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/CreateItemActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="154" column="5" lean-forward="false" selection-start-line="154" selection-start-column="5" selection-end-line="154" selection-end-column="5" />
-          <folding>
-            <element signature="method#onCreateOptionsMenu#0;class#CreateItemActivity#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/ReadItemActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/util/Functions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="117" column="5" lean-forward="false" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
-          <folding>
-            <element signature="method#onCreateOptionsMenu#0;class#ReadItemActivity#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="391">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/UpdateItemActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/res/menu/menu_donor.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="98" column="24" lean-forward="false" selection-start-line="98" selection-start-column="24" selection-end-line="98" selection-end-column="24" />
-          <folding>
-            <element signature="method#onCreateOptionsMenu#0;class#UpdateItemActivity#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
         </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/res/menu/menu_items.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="28" lean-forward="false" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/ClosedRequestsActivity.java">
@@ -2971,38 +2961,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/DonorHomeActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="124" column="5" lean-forward="false" selection-start-line="124" selection-start-column="5" selection-end-line="124" selection-end-column="5" />
-          <folding>
-            <element signature="method#onCreateOptionsMenu#0;class#DonorHomeActivity#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="90" column="56" lean-forward="true" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
+        <state relative-caret-position="238">
+          <caret line="50" column="32" lean-forward="false" selection-start-line="50" selection-start-column="32" selection-end-line="50" selection-end-column="32" />
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#LoginActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/MainActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/DonorHomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
+        <state relative-caret-position="204">
+          <caret line="107" column="5" lean-forward="false" selection-start-line="107" selection-start-column="5" selection-end-line="107" selection-end-column="5" />
+          <folding>
+            <element signature="method#onCreateOptionsMenu#0;class#DonorHomeActivity#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/MakeDonationActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-184">
-          <caret line="149" column="56" lean-forward="true" selection-start-line="149" selection-start-column="56" selection-end-line="149" selection-end-column="56" />
+        <state relative-caret-position="119">
+          <caret line="185" column="5" lean-forward="false" selection-start-line="185" selection-start-column="5" selection-end-line="185" selection-end-column="5" />
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#MakeDonationActivity#0" expanded="false" />
           </folding>
@@ -3011,36 +2993,38 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/MyDonationsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="670">
-          <caret line="126" column="5" lean-forward="false" selection-start-line="126" selection-start-column="5" selection-end-line="126" selection-end-column="5" />
+        <state relative-caret-position="306">
+          <caret line="109" column="5" lean-forward="false" selection-start-line="109" selection-start-column="5" selection-end-line="109" selection-end-column="5" />
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#MyDonationsActivity#0" expanded="false" />
-            <element signature="e#4962#4963#0" expanded="false" />
-            <element signature="e#5006#5007#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/NewRequestActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="33" column="50" lean-forward="true" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
-          <folding />
+        <state relative-caret-position="391">
+          <caret line="76" column="5" lean-forward="false" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+          <folding>
+            <element signature="method#onCreateOptionsMenu#0;class#NewRequestActivity#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/OpenRequestsActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="33" column="50" lean-forward="true" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
-          <folding />
+        <state relative-caret-position="391">
+          <caret line="76" column="5" lean-forward="false" selection-start-line="76" selection-start-column="5" selection-end-line="76" selection-end-column="5" />
+          <folding>
+            <element signature="method#onCreateOptionsMenu#0;class#OpenRequestsActivity#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/ReceiveItemActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="551">
-          <caret line="256" column="56" lean-forward="true" selection-start-line="256" selection-start-column="56" selection-end-line="256" selection-end-column="56" />
+        <state relative-caret-position="255">
+          <caret line="291" column="5" lean-forward="false" selection-start-line="291" selection-start-column="5" selection-end-line="291" selection-end-column="5" />
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#ReceiveItemActivity#0" expanded="false" />
           </folding>
@@ -3049,8 +3033,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/SignUpActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="80" column="56" lean-forward="true" selection-start-line="80" selection-start-column="56" selection-end-line="80" selection-end-column="56" />
+        <state relative-caret-position="289">
+          <caret line="116" column="5" lean-forward="false" selection-start-line="116" selection-start-column="5" selection-end-line="116" selection-end-column="5" />
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#SignUpActivity#0" expanded="false" />
           </folding>
@@ -3059,8 +3043,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/TestHomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="568">
-          <caret line="125" column="56" lean-forward="true" selection-start-line="125" selection-start-column="56" selection-end-line="125" selection-end-column="56" />
+        <state relative-caret-position="238">
+          <caret line="162" column="5" lean-forward="false" selection-start-line="162" selection-start-column="5" selection-end-line="162" selection-end-column="5" />
           <folding>
             <element signature="method#onClick#0;class#TestHomeActivity#0" expanded="false" />
             <element signature="method#onCreateOptionsMenu#0;class#TestHomeActivity#0" expanded="false" />
@@ -3070,8 +3054,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/WorkerHomeActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="70" column="56" lean-forward="true" selection-start-line="70" selection-start-column="56" selection-end-line="70" selection-end-column="56" />
+        <state relative-caret-position="204">
+          <caret line="106" column="5" lean-forward="false" selection-start-line="106" selection-start-column="5" selection-end-line="106" selection-end-column="5" />
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#WorkerHomeActivity#0" expanded="false" />
             <element signature="method#refreshRequestList#0;class#WorkerHomeActivity#0" expanded="false" />
@@ -3083,8 +3067,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/WorkerListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="63" column="56" lean-forward="true" selection-start-line="63" selection-start-column="56" selection-end-line="63" selection-end-column="56" />
+        <state relative-caret-position="136">
+          <caret line="99" column="5" lean-forward="false" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#WorkerListActivity#0" expanded="false" />
           </folding>
@@ -3093,21 +3077,50 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/WorkerListDeleteActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="63" column="56" lean-forward="true" selection-start-line="63" selection-start-column="56" selection-end-line="63" selection-end-column="56" />
+        <state relative-caret-position="136">
+          <caret line="99" column="5" lean-forward="false" selection-start-line="99" selection-start-column="5" selection-end-line="99" selection-end-column="5" />
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#WorkerListDeleteActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/OrganizerHomeActivity.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/CreateItemActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="137" column="5" lean-forward="false" selection-start-line="137" selection-start-column="5" selection-end-line="137" selection-end-column="5" />
+          <folding>
+            <element signature="method#onCreateOptionsMenu#0;class#CreateItemActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/ReadItemActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
-          <caret line="62" column="63" lean-forward="false" selection-start-line="62" selection-start-column="63" selection-end-line="62" selection-end-column="63" />
+          <caret line="100" column="5" lean-forward="false" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
+          <folding>
+            <element signature="method#onCreateOptionsMenu#0;class#ReadItemActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/items/UpdateItemActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="117" column="5" lean-forward="false" selection-start-line="117" selection-start-column="5" selection-end-line="117" selection-end-column="5" />
+          <folding>
+            <element signature="method#onCreateOptionsMenu#0;class#UpdateItemActivity#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/shelterconnect/controller/OrganizerHomeActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
             <element signature="method#onCreateOptionsMenu#0;class#OrganizerHomeActivity#0" expanded="false" />
-            <element signature="method#onOptionsItemSelected#0;class#OrganizerHomeActivity#0" expanded="false" />
           </folding>
         </state>
       </provider>

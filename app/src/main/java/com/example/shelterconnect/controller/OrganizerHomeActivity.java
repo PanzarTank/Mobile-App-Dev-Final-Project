@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,11 +40,14 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
     private ListView requestList;
     private HashMap<Integer, String> itemIDNameMap;
     private HashMap<Integer, Double> itemIDPriceMap;
+    public int userLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_organizer_home);
+
+        userLevel = Functions.getUserLevel(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
@@ -71,6 +75,42 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_items, menu);
+        MenuItem homeMenu = menu.findItem(R.id.home);
+        MenuItem listItems = menu.findItem(R.id.listItems);
+        MenuItem addItem = menu.findItem(R.id.addItem);
+        MenuItem editItems = menu.findItem(R.id.editItems);
+        MenuItem editWorkers = menu.findItem(R.id.editWorkers);
+        MenuItem logoutMenu = menu.findItem(R.id.logout);
+
+        if (userLevel == 0) {
+            homeMenu.setVisible(true);
+            listItems.setVisible(false);
+            addItem.setVisible(false);
+            editItems.setVisible(false);
+            editWorkers.setVisible(false);
+            logoutMenu.setVisible(true);
+        } else if (userLevel == 1) {
+            homeMenu.setVisible(true);
+            listItems.setVisible(true);
+            addItem.setVisible(true);
+            editItems.setVisible(true);
+            editWorkers.setVisible(false);
+            logoutMenu.setVisible(true);
+        } else if (userLevel == 2) {
+            homeMenu.setVisible(true);
+            listItems.setVisible(true);
+            addItem.setVisible(true);
+            editItems.setVisible(true);
+            editWorkers.setVisible(true);
+            logoutMenu.setVisible(true);
+        } else {
+            homeMenu.setVisible(false);
+            listItems.setVisible(false);
+            addItem.setVisible(false);
+            editItems.setVisible(false);
+            editWorkers.setVisible(false);
+            logoutMenu.setVisible(false);
+        }
         return true;
     }
 
@@ -145,7 +185,7 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
 
             System.out.println(obj);
 
-            Item currItem = new Item(obj.getInt("itemID"),  obj.getString("name"),
+            Item currItem = new Item(obj.getInt("itemID"), obj.getString("name"),
                     obj.getDouble("price"), obj.getInt("quantity"));
 
             this.itemIDNameMap.put(currItem.getItemID(), currItem.getName());
@@ -182,11 +222,11 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
                     active
             );
 
-            if(this.itemIDNameMap.get(newRequest.getItemID()) != null){
+            if (this.itemIDNameMap.get(newRequest.getItemID()) != null) {
                 newRequest.setName(this.itemIDNameMap.get(newRequest.getItemID()));
             }
 
-            if(this.itemIDPriceMap.get(newRequest.getItemID()) != null){
+            if (this.itemIDPriceMap.get(newRequest.getItemID()) != null) {
                 newRequest.setItemPrice(this.itemIDPriceMap.get(obj.getInt("itemID")));
             }
 

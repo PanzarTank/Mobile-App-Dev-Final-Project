@@ -23,5 +23,8 @@ public class Functions {
 
         return userPosition;
     }
+    public void menuCheck(int userLevel) {
+
+    }
 
 }

@@ -36,11 +36,14 @@ public class ReadItemActivity extends AppCompatActivity {
 
     ArrayList<Item> itemList;
     private ListView myListView;
+    public int userLevel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_item_list);
+
+        userLevel = Functions.getUserLevel(this);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
@@ -58,6 +61,42 @@ public class ReadItemActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_items, menu);
+        MenuItem homeMenu = menu.findItem(R.id.home);
+        MenuItem listItems = menu.findItem(R.id.listItems);
+        MenuItem addItem = menu.findItem(R.id.addItem);
+        MenuItem editItems = menu.findItem(R.id.editItems);
+        MenuItem editWorkers = menu.findItem(R.id.editWorkers);
+        MenuItem logoutMenu = menu.findItem(R.id.logout);
+
+        if (userLevel == 0) {
+            homeMenu.setVisible(true);
+            listItems.setVisible(false);
+            addItem.setVisible(false);
+            editItems.setVisible(false);
+            editWorkers.setVisible(false);
+            logoutMenu.setVisible(true);
+        } else if (userLevel == 1) {
+            homeMenu.setVisible(true);
+            listItems.setVisible(true);
+            addItem.setVisible(true);
+            editItems.setVisible(true);
+            editWorkers.setVisible(false);
+            logoutMenu.setVisible(true);
+        } else if (userLevel == 2) {
+            homeMenu.setVisible(true);
+            listItems.setVisible(true);
+            addItem.setVisible(true);
+            editItems.setVisible(true);
+            editWorkers.setVisible(true);
+            logoutMenu.setVisible(true);
+        } else {
+            homeMenu.setVisible(false);
+            listItems.setVisible(false);
+            addItem.setVisible(false);
+            editItems.setVisible(false);
+            editWorkers.setVisible(false);
+            logoutMenu.setVisible(false);
+        }
         return true;
     }
 
