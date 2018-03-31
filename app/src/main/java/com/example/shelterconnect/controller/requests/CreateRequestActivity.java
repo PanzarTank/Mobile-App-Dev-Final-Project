@@ -6,8 +6,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.InputType;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,9 +21,7 @@ import android.widget.Toast;
 
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.database.Api;
-
 import com.example.shelterconnect.database.RequestHandler;
-
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,7 +30,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by parth on 18-03-2018.
@@ -39,8 +37,8 @@ import java.util.Map;
 
 public class CreateRequestActivity extends AppCompatActivity {
 
-    private TextView reqAmt;
-    private TextView raiAmt;
+    private TextView requiredAmount;
+    private TextView raisedAmount;
     private TextView itemQuantity;
     private TextView workID;
     private TextView itemID;
@@ -48,8 +46,9 @@ public class CreateRequestActivity extends AppCompatActivity {
     private Boolean active = true;
     private String num;
 
-    private Map<String, Integer> itemIdNameMap;
-    private Map<String, Integer> itemIdQuantityMap;
+    private HashMap<String, Integer> itemIdNameMap;
+    private HashMap<String, Integer> itemIdQuantityMap;
+    private HashMap<Integer, Double> itemIDPriceMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +57,7 @@ public class CreateRequestActivity extends AppCompatActivity {
         String workerId = getSharedPreferences("userLevel", Context.MODE_PRIVATE).getString("workerId", "");
         itemIdNameMap = new HashMap<>();
         itemIdQuantityMap = new HashMap<>();
-
+        this.itemIDPriceMap = new HashMap<>();
 
         GetItemNetworkRequest getItemNetworkRequest = new GetItemNetworkRequest(Api.URL_READ_ITEMS, Api.CODE_GET_REQUEST);
         getItemNetworkRequest.execute();
@@ -69,20 +68,53 @@ public class CreateRequestActivity extends AppCompatActivity {
         toolbar.setTitle("Create Request");
         toolbar.setSubtitle("");
         itemNameSpinner = findViewById(R.id.itemNameSpinner);
-        this.reqAmt = findViewById(R.id.requiredAmount);
-        this.raiAmt = findViewById(R.id.raisedAmount);
+        this.requiredAmount = findViewById(R.id.requiredAmount);
+        this.raisedAmount = findViewById(R.id.raisedAmount);
         this.itemQuantity = findViewById(R.id.quantity);
         this.workID = findViewById(R.id.workerID);
         this.itemID = findViewById(R.id.itemID);
 
-        workID.setText(workerId);
-        raiAmt.setText(String.valueOf("0.0"));
+        this.requiredAmount.setKeyListener(null);
+        this.raisedAmount.setKeyListener(null);
+        this.workID.setKeyListener(null);
+        this.itemID.setKeyListener(null);
 
-        //this.active = findViewById(R.id.active);
-        itemQuantity.setInputType(InputType.TYPE_NULL);
-        raiAmt.setInputType(InputType.TYPE_NULL);
-        itemID.setInputType(InputType.TYPE_NULL);
-        //workID.setInputType(InputType.TYPE_NULL);
+        workID.setText(workerId);
+        raisedAmount.setText(String.valueOf("0.0"));
+
+        itemQuantity.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+                if(!itemQuantity.getText().toString().isEmpty()) {
+
+                    String newQuantity = itemQuantity.getText().toString().trim();
+
+                    double quantity = Double.parseDouble(newQuantity);
+
+                    Integer itemIDInt = Integer.parseInt(itemID.getText().toString().trim());
+
+                    double itemPrice = itemIDPriceMap.get(itemIDInt);
+
+                    double newPrice = quantity * itemPrice;
+
+                    requiredAmount.setText(Double.toString(newPrice));
+                }
+
+            }
+        });
+
+        //itemQuantity.setInputType(InputType.TYPE_NULL);
 
         Button itemButton = findViewById(R.id.requestButton);
 
@@ -95,28 +127,28 @@ public class CreateRequestActivity extends AppCompatActivity {
     }
 
     private void createItem() {
-        String rq = this.reqAmt.getText().toString().trim();
-        String ra = this.raiAmt.getText().toString().trim();
+        String rq = this.requiredAmount.getText().toString().trim();
+        String ra = this.raisedAmount.getText().toString().trim();
         String wk = this.workID.getText().toString().trim();
         String it = String.valueOf(itemIdNameMap.get(itemNameSpinner.getSelectedItem().toString()));
         //String ac = this.active.getText().toString().trim();
         String quantity = this.itemQuantity.getText().toString().trim();
 
         if (TextUtils.isEmpty(rq)) {
-            this.reqAmt.setError("Please enter Amount Required");
-            this.reqAmt.requestFocus();
+            this.requiredAmount.setError("Please enter Amount Required");
+            this.requiredAmount.requestFocus();
             return;
         }
 
         if (Integer.parseInt(rq) < 1) {
-            reqAmt.setError(("Please enter an amount greater than 0"));
-            reqAmt.requestFocus();
+            requiredAmount.setError(("Please enter an amount greater than 0"));
+            requiredAmount.requestFocus();
             return;
         }
 
         if (TextUtils.isEmpty(ra)) {
-            this.raiAmt.setError("Please enter Amount that has been Raised");
-            this.raiAmt.requestFocus();
+            this.raisedAmount.setError("Please enter Amount that has been Raised");
+            this.raisedAmount.requestFocus();
             return;
         }
 
@@ -184,15 +216,18 @@ public class CreateRequestActivity extends AppCompatActivity {
             JSONObject obj = items.getJSONObject(i);
             itemIdNameMap.put(obj.getString("name"), obj.getInt("itemID"));
             itemIdQuantityMap.put(obj.getString("name"), obj.getInt("quantity"));
+            this.itemIDPriceMap.put(obj.getInt("itemID"), obj.getDouble("price"));
         }
 
         List<String> itemNames = new ArrayList<>(itemIdNameMap.keySet());
+
         itemNameSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, itemNames));
         itemNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 itemID.setText(String.valueOf(itemIdNameMap.get(itemNameSpinner.getSelectedItem().toString())));
-                itemQuantity.setText(String.valueOf(itemIdQuantityMap.get(itemNameSpinner.getSelectedItem().toString())));
+//                itemQuantity.setText(String.valueOf(itemIdQuantityMap.get(itemNameSpinner.getSelectedItem().toString())));
             }
 
             @Override
