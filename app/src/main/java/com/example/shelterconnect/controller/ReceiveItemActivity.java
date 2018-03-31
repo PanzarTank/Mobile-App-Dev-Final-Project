@@ -56,7 +56,7 @@ public class ReceiveItemActivity extends AppCompatActivity {
         PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_READ_REQUESTS, null, Api.CODE_GET_REQUEST);
         request.execute();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("RECEIVE ITEM");

@@ -40,7 +40,7 @@ public class CreateItemActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("ADD ITEMS");

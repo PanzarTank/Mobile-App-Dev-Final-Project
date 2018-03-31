@@ -77,7 +77,9 @@ public class WorkerItemAdapter extends ArrayAdapter<Employee> implements View.On
             });
 
             TextView employeeName = (TextView) currentView.findViewById(R.id.name);
-            employeeName.setText(currEmployee.getName());
+            String name = currEmployee.getName();
+            name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+            employeeName.setText(name);
 
             TextView employeePosition = (TextView) currentView.findViewById(R.id.position);
 

@@ -8,7 +8,7 @@
     tools:context=".controller.DonorHomeActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/itemToolbar"
+        android:id="@+id/requestToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -40,40 +40,41 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/textViewRequestID"
-                    android:gravity="left"
-                    android:layout_width="match_parent"
+                    android:id="@+id/textViewWorkerID"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ID"
+                    android:gravity="left"
+                    android:text="Item"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
                     android:id="@+id/textViewNeededLabel"
-                    android:gravity="left"
-                    android:layout_width="match_parent"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="left"
                     android:text="Needed"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
                     android:id="@+id/textViewAchievedLabel"
-                    android:gravity="left"
-                    android:layout_width="match_parent"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="left"
                     android:text="Achieved"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
-                    android:id="@+id/textViewWorkerID"
-                    android:gravity="left"
-                    android:layout_width="match_parent"
+                    android:id="@+id/textViewUDRC"
+                    android:layout_width="350dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Worker ID"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                    android:gravity="left"
+                    android:text="Update / Recieve"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:visibility="invisible" />
 
             </LinearLayout>
 

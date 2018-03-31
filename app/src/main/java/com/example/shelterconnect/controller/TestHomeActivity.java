@@ -30,7 +30,7 @@ public class TestHomeActivity extends AppCompatActivity implements View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test_home);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("TEST HOMEPAGE");
@@ -49,7 +49,7 @@ public class TestHomeActivity extends AppCompatActivity implements View.OnClickL
         findViewById(R.id.donorViewRequest).setOnClickListener(this);
         findViewById(R.id.organizerViewRequest).setOnClickListener(this);
         findViewById(R.id.workerViewRequest).setOnClickListener(this);
-     //   findViewById(R.id.closedViewRequest).setOnClickListener(this);
+        //   findViewById(R.id.closedViewRequest).setOnClickListener(this);
     }
 
     @Override
@@ -75,7 +75,6 @@ public class TestHomeActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(this, CreateRequestActivity.class));
 
                 break;
-
             case R.id.viewRequest:
                 startActivity(new Intent(this, GetRequestActivity.class));
 
@@ -109,10 +108,10 @@ public class TestHomeActivity extends AppCompatActivity implements View.OnClickL
                 startActivity(new Intent(this, WorkerGetRequestActivity.class));
 
                 break;
-          //  case R.id.closedViewRequest:
+            //  case R.id.closedViewRequest:
             //    startActivity(new Intent(this, ClosedRequestActivity.class));
 
-              //  break;
+            //  break;
 
         }
     }

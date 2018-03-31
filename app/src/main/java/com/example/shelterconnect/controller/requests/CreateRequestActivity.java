@@ -2,21 +2,18 @@ package com.example.shelterconnect.controller.requests;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,7 +22,6 @@ import com.example.shelterconnect.R;
 import com.example.shelterconnect.database.Api;
 
 import com.example.shelterconnect.database.RequestHandler;
-import com.google.firebase.auth.FirebaseAuth;
 
 
 import org.json.JSONArray;
@@ -33,7 +29,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,7 +55,7 @@ public class CreateRequestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_request);
-        String workerId =  getSharedPreferences("userLevel", Context.MODE_PRIVATE).getString("workerId", "");
+        String workerId = getSharedPreferences("userLevel", Context.MODE_PRIVATE).getString("workerId", "");
         itemIdNameMap = new HashMap<>();
         itemIdQuantityMap = new HashMap<>();
 
@@ -68,7 +63,7 @@ public class CreateRequestActivity extends AppCompatActivity {
         GetItemNetworkRequest getItemNetworkRequest = new GetItemNetworkRequest(Api.URL_READ_ITEMS, Api.CODE_GET_REQUEST);
         getItemNetworkRequest.execute();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("Create Request");
@@ -83,13 +78,11 @@ public class CreateRequestActivity extends AppCompatActivity {
         workID.setText(workerId);
         raiAmt.setText(String.valueOf("0.0"));
 
-
         //this.active = findViewById(R.id.active);
         itemQuantity.setInputType(InputType.TYPE_NULL);
         raiAmt.setInputType(InputType.TYPE_NULL);
         itemID.setInputType(InputType.TYPE_NULL);
-      //  workID.setInputType(InputType.TYPE_NULL);
-
+        //workID.setInputType(InputType.TYPE_NULL);
 
         Button itemButton = findViewById(R.id.requestButton);
 
@@ -99,8 +92,6 @@ public class CreateRequestActivity extends AppCompatActivity {
                 createItem();
             }
         });
-
-
     }
 
     private void createItem() {
@@ -114,6 +105,12 @@ public class CreateRequestActivity extends AppCompatActivity {
         if (TextUtils.isEmpty(rq)) {
             this.reqAmt.setError("Please enter Amount Required");
             this.reqAmt.requestFocus();
+            return;
+        }
+
+        if (Integer.parseInt(rq) < 1) {
+            reqAmt.setError(("Please enter an amount greater than 0"));
+            reqAmt.requestFocus();
             return;
         }
 
@@ -140,9 +137,9 @@ public class CreateRequestActivity extends AppCompatActivity {
             return;
         }
         //if (TextUtils.isEmpty(ac)) {
-          //  this.active.setError("Please enter name");
-            //this.active.requestFocus();
-            //return;
+        //  this.active.setError("Please enter name");
+        //this.active.requestFocus();
+        //return;
         //}
 
         HashMap<String, String> params = new HashMap<>();
@@ -190,7 +187,7 @@ public class CreateRequestActivity extends AppCompatActivity {
         }
 
         List<String> itemNames = new ArrayList<>(itemIdNameMap.keySet());
-        itemNameSpinner.setAdapter( new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, itemNames));
+        itemNameSpinner.setAdapter(new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, itemNames));
         itemNameSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

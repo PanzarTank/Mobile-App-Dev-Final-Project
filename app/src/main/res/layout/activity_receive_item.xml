@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/itemToolbar"
+            android:id="@+id/requestToolbar"
             android:layout_width="412dp"
             android:layout_height="66dp"
             android:background="?attr/colorPrimary"

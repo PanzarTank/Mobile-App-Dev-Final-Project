@@ -50,8 +50,10 @@ public class RequestAdapterDonor extends ArrayAdapter<Request> {
                 currentView = vi.inflate(R.layout.request_list_donor, null);
             }
 
-            final TextView itemName = currentView.findViewById(R.id.requestID);
-            itemName.setText(currRequest.getName());
+            final TextView itemName = currentView.findViewById(R.id.itemName);
+            String name = currRequest.getName();
+            name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+            itemName.setText(name);
 
             final int requestIDLabel = (currRequest.getRequestID());
 

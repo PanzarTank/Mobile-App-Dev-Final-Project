@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="@+id/itemID" />
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/itemToolbar"
+        android:id="@+id/requestToolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
 
@@ -103,7 +103,7 @@
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/itemToolbar" />
+        app:layout_constraintTop_toTopOf="@+id/requestToolbar" />
 
     <EditText
         android:id="@+id/itemID"

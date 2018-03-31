@@ -8,7 +8,7 @@
     tools:context=".controller.DonorHomeActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/itemToolbar"
+        android:id="@+id/requestToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -41,38 +41,38 @@
 
                 <TextView
                     android:id="@+id/textViewRequestID"
-                    android:gravity="left"
-                    android:layout_width="match_parent"
+                    android:layout_width="310dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="ID"
+                    android:gravity="left"
+                    android:text="Item"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
                     android:id="@+id/textViewNeededLabel"
-                    android:gravity="left"
-                    android:layout_width="match_parent"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="left"
                     android:text="Needed"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
                     android:id="@+id/textViewAchievedLabel"
-                    android:gravity="left"
-                    android:layout_width="match_parent"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="left"
                     android:text="Achieved"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
                     android:id="@+id/textViewWorkerID"
-                    android:gravity="left"
-                    android:layout_width="match_parent"
+                    android:layout_width="365dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Worker ID"
+                    android:gravity="center"
+                    android:text="Update / Receive"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
             </LinearLayout>
@@ -85,7 +85,6 @@
 
 
             </ListView>
-
 
         </LinearLayout>
     </ScrollView>
@@ -103,5 +102,5 @@
         app:layout_constraintBottom_toTopOf="@+id/donorScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/requestToolbar" />
 </android.support.constraint.ConstraintLayout>

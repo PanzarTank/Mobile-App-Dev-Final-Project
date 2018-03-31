@@ -7,7 +7,7 @@
     tools:context=".controller.DonorHomeActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/itemToolbar"
+        android:id="@+id/requestToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -39,17 +39,17 @@
                 android:padding="5dp">
 
                 <TextView
-                    android:id="@+id/textViewRequestID"
-                    android:layout_width="match_parent"
+                    android:id="@+id/textViewWorkerID"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="left"
-                    android:text="ID"
+                    android:text="Item"
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
                     android:id="@+id/textViewNeededLabel"
-                    android:layout_width="match_parent"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="left"
@@ -58,7 +58,7 @@
 
                 <TextView
                     android:id="@+id/textViewAchievedLabel"
-                    android:layout_width="match_parent"
+                    android:layout_width="320dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="left"
@@ -66,13 +66,14 @@
                     android:textColor="@color/common_google_signin_btn_text_dark_focused" />
 
                 <TextView
-                    android:id="@+id/textViewWorkerID"
-                    android:layout_width="match_parent"
+                    android:id="@+id/textViewUDRC"
+                    android:layout_width="380dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="left"
-                    android:text="Worker ID"
-                    android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+                    android:gravity="center"
+                    android:text="Update / Recieve"
+                    android:textColor="@color/common_google_signin_btn_text_dark_focused"
+                    android:visibility="visible" />
 
             </LinearLayout>
 
@@ -96,9 +97,9 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Items"
-        android:textSize="25sp"
+        android:textSize="17sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/itemToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/requestToolbar" />
 
     <Button
         android:id="@+id/viewWorkersButton"
@@ -108,11 +109,11 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Workers"
-        android:textSize="25sp"
+        android:textSize="17sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/viewItemsButton"
-        app:layout_constraintTop_toBottomOf="@+id/itemToolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/requestToolbar" />
 
     <Button
         android:id="@+id/viewCompletedRequestsButton"
@@ -133,7 +134,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="7dp"
         android:text="Request Items"
-        android:textSize="20sp"
+        android:textSize="17sp"
         app:layout_constraintBottom_toTopOf="@+id/donorScrollView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

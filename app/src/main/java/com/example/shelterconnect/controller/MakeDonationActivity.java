@@ -83,7 +83,7 @@ public class MakeDonationActivity extends AppCompatActivity {
 
         System.out.println("REQUEST NAME: " + this.sendingRequest.getName());
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
         if(getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);

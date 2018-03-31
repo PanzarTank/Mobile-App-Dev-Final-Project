@@ -54,11 +54,10 @@ public class RequestAdapterOrganizer extends ArrayAdapter<Request> {
                 currentView = vi.inflate(R.layout.request_list_organizer, null);
             }
 
-
-
-
-            final TextView itemName = currentView.findViewById(R.id.requestID);
-            itemName.setText(currRequest.getName());
+            final TextView itemName = currentView.findViewById(R.id.itemName);
+            String name = currRequest.getName();
+            name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+            itemName.setText(name);
 
             final int requestIDLabel = (currRequest.getRequestID());
 
@@ -67,10 +66,6 @@ public class RequestAdapterOrganizer extends ArrayAdapter<Request> {
 
             final TextView requestRaised = currentView.findViewById(R.id.achieved);
             requestRaised.setText(Double.toString(currRequest.getAmountRaised()));
-
-            final TextView inStockQuantity = currentView.findViewById(R.id.inStock);
-            inStockQuantity.setText(Integer.toString(currRequest.getQuantity()));
-
 
             final double raisedLabel = (currRequest.getAmountRaised());
             final double requiredLabel = (currRequest.getAmountNeeded());
@@ -122,16 +117,15 @@ public class RequestAdapterOrganizer extends ArrayAdapter<Request> {
             Boolean x = (currRequest.isActive());
 
             if (x == true)
-            {itemName.setTextColor(Color.parseColor("RED"));
+            {
                 requestNeeded.setTextColor(Color.parseColor("RED"));
                 requestRaised.setTextColor(Color.parseColor("RED"));
-                inStockQuantity.setTextColor(Color.parseColor("RED"));
+                itemName.setTextColor(Color.parseColor("RED"));
             }
             else {
-                itemName.setTextColor(Color.parseColor("BLUE"));
                 requestNeeded.setTextColor(Color.parseColor("BLUE"));
                 requestRaised.setTextColor(Color.parseColor("BLUE"));
-                inStockQuantity.setTextColor(Color.parseColor("BLUE"));
+                itemName.setTextColor(Color.parseColor("BLUE"));
 
             }
 

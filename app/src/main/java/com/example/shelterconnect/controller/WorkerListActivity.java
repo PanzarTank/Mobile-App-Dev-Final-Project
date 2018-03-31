@@ -13,7 +13,6 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.shelterconnect.R;
-import com.example.shelterconnect.adapters.ItemAdapter;
 import com.example.shelterconnect.adapters.WorkerItemAdapter;
 import com.example.shelterconnect.controller.items.CreateItemActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
@@ -21,7 +20,6 @@ import com.example.shelterconnect.controller.items.UpdateItemActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Employee;
-import com.example.shelterconnect.model.Item;
 import com.example.shelterconnect.util.Functions;
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -43,7 +41,7 @@ public class WorkerListActivity extends AppCompatActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_worker_list);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("WORKERS");

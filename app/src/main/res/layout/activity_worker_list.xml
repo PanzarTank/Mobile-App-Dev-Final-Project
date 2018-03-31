@@ -9,7 +9,7 @@
     tools:context="com.example.shelterconnect.controller.items.ReadItemActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/itemToolbar"
+        android:id="@+id/requestToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
@@ -26,7 +26,7 @@
 
         <TextView
             android:id="@+id/textViewNameLabel"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/name"
@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/textViewPositionLabel"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/position"
@@ -42,7 +42,7 @@
 
         <TextView
             android:id="@+id/textViewEmailLabel"
-            android:layout_width="match_parent"
+            android:layout_width="420dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/email"

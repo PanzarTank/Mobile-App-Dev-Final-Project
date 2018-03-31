@@ -36,7 +36,10 @@ public class ItemAdapter extends ArrayAdapter<Item> {
             }
 
             TextView itemName = (TextView) currentView.findViewById(R.id.name);
-            itemName.setText(currItem.getName());
+            String name = currItem.getName();
+            name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+            itemName.setText(name);
+
             TextView itemPrice = (TextView) currentView.findViewById(R.id.price);
 
             String itemPriceText = "$"+Double.toString(currItem.getPrice());

@@ -45,12 +45,10 @@ public class RequestAdapterWorker extends ArrayAdapter<Request> {
 
                 currentView = vi.inflate(R.layout.request_list, null);
             }
-
-
-
-
-            TextView itemName = currentView.findViewById(R.id.requestID);
-            itemName.setText(currRequest.getName());
+            final TextView itemName = currentView.findViewById(R.id.itemName);
+            String name = currRequest.getName();
+            name = name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase();
+            itemName.setText(name);
 
             TextView requestNeeded = currentView.findViewById(R.id.required);
             requestNeeded.setText(Double.toString(currRequest.getAmountNeeded()));

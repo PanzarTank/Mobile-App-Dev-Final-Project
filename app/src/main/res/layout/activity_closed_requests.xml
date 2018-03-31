@@ -7,7 +7,7 @@
     tools:context="com.example.shelterconnect.controller.ClosedRequestsActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/itemToolbar"
+        android:id="@+id/requestToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"

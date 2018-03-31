@@ -2,7 +2,6 @@ package com.example.shelterconnect.controller.requests;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +22,6 @@ import com.example.shelterconnect.adapters.RequestAdapter;
 import com.example.shelterconnect.database.Api;
 
 import com.example.shelterconnect.database.RequestHandler;
-import com.google.firebase.auth.FirebaseAuth;
 
 
 import org.json.JSONArray;
@@ -71,7 +69,7 @@ public class UpdateRequestActivity extends AppCompatActivity {
         GetItemNetworkRequest getItemNetworkRequest = new GetItemNetworkRequest(Api.URL_READ_ITEMS, Api.CODE_GET_REQUEST);
         getItemNetworkRequest.execute();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("Create Request");

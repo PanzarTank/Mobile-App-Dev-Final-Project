@@ -9,11 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.Window;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.shelterconnect.R;
+import com.example.shelterconnect.adapters.RequestAdapterWorker;
 import com.example.shelterconnect.controller.items.CreateItemActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.items.UpdateItemActivity;
@@ -25,7 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
-import com.example.shelterconnect.adapters.RequestAdapter;
+
 import com.example.shelterconnect.model.Request;
 import com.example.shelterconnect.util.Functions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,13 +35,15 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
     private ArrayList<Request> requests;
     private ArrayList<Item> itemList;
     private ListView requestList;
+    private HashMap<Integer, String> itemIDNameMap;
+    private HashMap<Integer, Double> itemIDPriceMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_worker_home);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         toolbar.setTitle("WORKER HOMEPAGE");
@@ -53,6 +55,8 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
 
         this.requests = new ArrayList<Request>();
         this.itemList = new ArrayList<Item>();
+        this.itemIDNameMap = new HashMap<>();
+        this.itemIDPriceMap = new HashMap<>();
 
         readRequests();
     }
@@ -122,14 +126,33 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
         request.execute();
     }
 
-    private void refreshRequestList(JSONArray items) throws JSONException {
-        requests.clear();
-        //String itemName = "";
+    private void refreshItemList(JSONArray items) throws JSONException {
+        itemList.clear();
+        this.itemIDPriceMap.clear();
+        this.itemIDNameMap.clear();
 
         for (int i = 0; i < items.length(); i++) {
             JSONObject obj = items.getJSONObject(i);
 
             System.out.println(obj);
+
+            Item currItem = new Item(obj.getInt("itemID"),  obj.getString("name"),
+                    obj.getDouble("price"), obj.getInt("quantity"));
+
+            this.itemIDNameMap.put(currItem.getItemID(), currItem.getName());
+            this.itemIDPriceMap.put(currItem.getItemID(), currItem.getPrice());
+
+            itemList.add(currItem);
+        }
+
+        System.out.println(this.itemIDPriceMap);
+    }
+
+    private void refreshRequestList(JSONArray items) throws JSONException {
+        requests.clear();
+
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject obj = items.getJSONObject(i);
 
             int activeInt = obj.getInt("active");
             boolean active = false;
@@ -140,15 +163,7 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
                 active = false;
             }
 
-            /* Attempt at matching id to name
-            for (Item item : itemList) {
-                if (obj.getInt("requestID") == item.getItemID()) {
-                    itemName = item.getName();
-                }
-            }
-            */
-
-            requests.add(new Request(
+            Request newRequest = new Request(
                     obj.getInt("requestID"),
                     obj.getInt("quantity"),
                     obj.getDouble("amountNeeded"),
@@ -156,10 +171,20 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
                     obj.getInt("workerID"),
                     obj.getInt("itemID"),
                     active
-            ));
+            );
+
+            if(this.itemIDNameMap.get(newRequest.getItemID()) != null){
+                newRequest.setName(this.itemIDNameMap.get(newRequest.getItemID()));
+            }
+
+            if(this.itemIDPriceMap.get(newRequest.getItemID()) != null){
+                newRequest.setItemPrice(this.itemIDPriceMap.get(obj.getInt("itemID")));
+            }
+
+            requests.add(newRequest);
         }
 
-        RequestAdapter adapter = new RequestAdapter(this, this.requests);
+        RequestAdapterWorker adapter = new RequestAdapterWorker(this, this.requests);
         this.requestList.setAdapter(adapter);
     }
 
@@ -196,6 +221,7 @@ public class WorkerHomeActivity extends AppCompatActivity implements View.OnClic
                 JSONObject object = new JSONObject(s);
 
                 if (!object.getBoolean("error")) {
+                    refreshItemList(object.getJSONArray("items"));
                     refreshRequestList(object.getJSONArray("requests"));
                 }
 
