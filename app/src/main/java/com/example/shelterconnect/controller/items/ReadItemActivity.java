@@ -128,17 +128,17 @@ public class ReadItemActivity extends AppCompatActivity {
                 return true;
             }
 
-        } else if (id == R.id.listItems) {
+        } else if (id == R.id.listItems && (userLevel > 0)) {
             Intent myIntent = new Intent(this, ReadItemActivity.class);
             startActivity(myIntent);
             return true;
 
-        } else if (id == R.id.addItem) {
+        } else if (id == R.id.addItem && (userLevel > 0)) {
             Intent myIntent = new Intent(this, CreateItemActivity.class);
             startActivity(myIntent);
             return true;
 
-        } else if (id == R.id.editItems) {
+        } else if (id == R.id.editItems && (userLevel > 0)) {
             Intent myIntent = new Intent(this, UpdateItemActivity.class);
             startActivity(myIntent);
             return true;
@@ -149,7 +149,7 @@ public class ReadItemActivity extends AppCompatActivity {
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
             return true;
-        } else if (id == R.id.editWorkers) {
+        } else if (id == R.id.editWorkers && (userLevel > 1)) {
             startActivity(new Intent(this, WorkerListDeleteActivity.class));
         }
 

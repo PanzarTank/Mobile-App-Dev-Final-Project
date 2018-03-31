@@ -68,8 +68,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         progressBar.setVisibility(View.GONE);
         userLevel = getSharedPreferences("userLevel", Context.MODE_PRIVATE);
 
-       // readDonors();
-        //readWorkers();
 
         LoginActivity.PerformNetworkRequest request = new LoginActivity.PerformNetworkRequest(Api.URL_READ_USERS, null, Api.CODE_GET_REQUEST);
         request.execute();

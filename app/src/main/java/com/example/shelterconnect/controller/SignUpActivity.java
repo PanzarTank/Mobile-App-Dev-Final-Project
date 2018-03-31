@@ -2,12 +2,14 @@ package com.example.shelterconnect.controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,6 +25,8 @@ import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.items.UpdateItemActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
+import com.example.shelterconnect.model.Donor;
+import com.example.shelterconnect.model.Employee;
 import com.example.shelterconnect.util.Functions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -30,9 +34,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SignUpActivity extends AppCompatActivity implements View.OnClickListener {
@@ -40,7 +46,10 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     EditText signInEmail, signInPassword, userName, userPhone, userAddress, verifyPassword;
     ProgressBar progressBar;
     RadioButton donor, organizer, employee;
-    public int userLevel;
+
+    ArrayList<Donor> donorList;
+    ArrayList<Employee> workerList;
+    SharedPreferences userLevel;
 
     AlertDialog builder;
 
@@ -50,8 +59,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
-
-        userLevel = Functions.getUserLevel(this);
 
         builder = new AlertDialog.Builder(SignUpActivity.this).create();
         builder.setTitle("Alert");
@@ -70,6 +77,9 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
         mAuth = FirebaseAuth.getInstance();
 
+        this.donorList = new ArrayList<Donor>();
+        this.workerList = new ArrayList<Employee>();
+
         findViewById(R.id.signup_button).setOnClickListener(this);
         findViewById(R.id.toLogin_button).setOnClickListener(this);
     }
@@ -83,36 +93,6 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         MenuItem editItems = menu.findItem(R.id.editItems);
         MenuItem editWorkers = menu.findItem(R.id.editWorkers);
         MenuItem logoutMenu = menu.findItem(R.id.logout);
-
-        if (userLevel == 0) {
-            homeMenu.setVisible(true);
-            listItems.setVisible(false);
-            addItem.setVisible(false);
-            editItems.setVisible(false);
-            editWorkers.setVisible(false);
-            logoutMenu.setVisible(true);
-        } else if (userLevel == 1) {
-            homeMenu.setVisible(true);
-            listItems.setVisible(true);
-            addItem.setVisible(true);
-            editItems.setVisible(true);
-            editWorkers.setVisible(false);
-            logoutMenu.setVisible(true);
-        } else if (userLevel == 2) {
-            homeMenu.setVisible(true);
-            listItems.setVisible(true);
-            addItem.setVisible(true);
-            editItems.setVisible(true);
-            editWorkers.setVisible(true);
-            logoutMenu.setVisible(true);
-        } else {
-            homeMenu.setVisible(false);
-            listItems.setVisible(false);
-            addItem.setVisible(false);
-            editItems.setVisible(false);
-            editWorkers.setVisible(false);
-            logoutMenu.setVisible(false);
-        }
         return true;
     }
 
@@ -215,8 +195,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void registerUser() {
-        String email = signInEmail.getText().toString().trim();
-        String password = signInPassword.getText().toString().trim();
+        final String email = signInEmail.getText().toString().trim();
+        final String password = signInPassword.getText().toString().trim();
         String vPassword = verifyPassword.getText().toString().trim();
         String name = userName.getText().toString().trim();
         String phone = userPhone.getText().toString().trim();
@@ -298,7 +278,8 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()) {
                     createUser();
-                    Toast.makeText(getApplicationContext(), "User Registered Successfully", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    Toast.makeText(getApplicationContext(), "User Registered Successfully. Please Log In", Toast.LENGTH_SHORT).show();
                 } else {
                     if (task.getException() instanceof FirebaseAuthUserCollisionException) {
                         Toast.makeText(getApplicationContext(), "Email already in use", Toast.LENGTH_SHORT).show();
@@ -333,9 +314,11 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
                 JSONObject object = new JSONObject(s);
 
                 if (!object.getBoolean("error")) {
-                    //Toast.makeText(getApplicationContext(), object.getString("message"), Toast.LENGTH_SHORT).show();
-                    Intent myIntent = new Intent(SignUpActivity.this, TestHomeActivity.class);
-                    startActivity(myIntent);
+                    JSONArray donors = object.getJSONArray("donors");
+                    JSONArray workers = object.getJSONArray("workers");
+
+                    refreshWorkerList(workers);
+                    refreshDonorList(donors);
                 }
 
             } catch (JSONException e) {
@@ -356,6 +339,43 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
             }
 
             return null;
+        }
+    }
+
+    private void refreshDonorList(JSONArray items) throws JSONException {
+        donorList.clear();
+
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject obj = items.getJSONObject(i);
+
+            donorList.add(new Donor(
+                    obj.getInt("donorID"),
+                    obj.getString("name"),
+                    obj.getString("phone"),
+                    obj.getString("address"),
+                    obj.getString("email")
+            ));
+        }
+    }
+
+    private void refreshWorkerList(JSONArray items) throws JSONException {
+
+        System.out.println("GOT TO REFRESH WORKER LIST!!!!!!!!");
+        workerList.clear();
+
+        for (int i = 0; i < items.length(); i++) {
+            JSONObject obj = items.getJSONObject(i);
+
+            System.out.println("Position! " + obj.getInt("position"));
+//int employeeID, String name, int position, String phone, String email, String address
+            workerList.add(new Employee(
+                    obj.getInt("workerID"),
+                    obj.getString("name"),
+                    obj.getInt("position"),
+                    obj.getString("phone"),
+                    obj.getString("email"),
+                    obj.getString("address")
+            ));
         }
     }
 
