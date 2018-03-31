@@ -13,6 +13,9 @@ import android.widget.Toast;
 
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.adapters.DonationAdapter;
+import com.example.shelterconnect.controller.items.CreateItemActivity;
+import com.example.shelterconnect.controller.items.ReadItemActivity;
+import com.example.shelterconnect.controller.items.UpdateItemActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Donation;
@@ -63,7 +66,7 @@ public class MyDonationsActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_donor, menu);
+        getMenuInflater().inflate(R.menu.menu_items, menu);
         return true;
     }
 
@@ -95,6 +98,20 @@ public class MyDonationsActivity extends AppCompatActivity {
                 return true;
             }
 
+        } else if (id == R.id.listItems) {
+            Intent myIntent = new Intent(this, ReadItemActivity.class);
+            startActivity(myIntent);
+            return true;
+
+        } else if (id == R.id.addItem) {
+            Intent myIntent = new Intent(this, CreateItemActivity.class);
+            startActivity(myIntent);
+            return true;
+
+        } else if (id == R.id.editItems) {
+            Intent myIntent = new Intent(this, UpdateItemActivity.class);
+            startActivity(myIntent);
+            return true;
         } else if (id == R.id.logout) {
 
             FirebaseAuth.getInstance().signOut();
@@ -102,6 +119,8 @@ public class MyDonationsActivity extends AppCompatActivity {
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
             return true;
+        } else if (id == R.id.editWorkers) {
+            startActivity(new Intent(this, WorkerListDeleteActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

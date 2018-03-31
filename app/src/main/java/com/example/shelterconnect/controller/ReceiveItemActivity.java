@@ -302,6 +302,8 @@ public class ReceiveItemActivity extends AppCompatActivity {
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
             return true;
+        } else if (id == R.id.editWorkers) {
+            startActivity(new Intent(this, WorkerListDeleteActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

@@ -17,6 +17,7 @@ import com.example.shelterconnect.controller.DonorHomeActivity;
 import com.example.shelterconnect.controller.LoginActivity;
 import com.example.shelterconnect.controller.OrganizerHomeActivity;
 import com.example.shelterconnect.controller.WorkerHomeActivity;
+import com.example.shelterconnect.controller.WorkerListDeleteActivity;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Item;
@@ -109,6 +110,8 @@ public class ReadItemActivity extends AppCompatActivity {
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
             return true;
+        } else if (id == R.id.editWorkers) {
+            startActivity(new Intent(this, WorkerListDeleteActivity.class));
         }
 
         return super.onOptionsItemSelected(item);

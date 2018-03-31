@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.adapters.RequestAdapterDonor;
@@ -76,7 +77,12 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
 
             int userLevel = Functions.getUserLevel(this);
 
-            if (userLevel == 0 | userLevel == -1) {
+            if (userLevel == -1) {
+                Toast.makeText(getApplicationContext(), "Please sign in to go to your homepage", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(this, LoginActivity.class);
+                startActivity(myIntent);
+                return true;
+            } else if (userLevel == 0) {
                 Intent myIntent = new Intent(this, DonorHomeActivity.class);
                 startActivity(myIntent);
                 return true;
@@ -107,10 +113,12 @@ public class DonorHomeActivity extends AppCompatActivity implements View.OnClick
         } else if (id == R.id.logout) {
 
             FirebaseAuth.getInstance().signOut();
-            getSharedPreferences("userLevel", Context.MODE_PRIVATE).edit().putString("position", "").apply();
+            getSharedPreferences("userLevel", Context.MODE_PRIVATE).edit().putString("position", "-1").apply();
             Intent myIntent = new Intent(this, LoginActivity.class);
             startActivity(myIntent);
             return true;
+        } else if (id == R.id.editWorkers) {
+            startActivity(new Intent(this, WorkerListDeleteActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
