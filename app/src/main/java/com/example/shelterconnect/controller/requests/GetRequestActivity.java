@@ -114,17 +114,18 @@ public class GetRequestActivity extends AppCompatActivity {
             Log.d("w is active", String.valueOf(activeInt));
             boolean active = true;
 
-            if(activeInt == 0){
+            if (activeInt == 0) {
                 active = true;
-            } else if(activeInt == 1){
+            } else if (activeInt == 1) {
                 active = false;
             }
 
             int checkNeeded = obj.getInt("amountNeeded");
             int checkquantity = obj.getInt("quantity");
 
-            if (checkquantity >= checkNeeded)
-          {active = false;}
+            if (checkquantity >= checkNeeded) {
+                active = false;
+            }
 
             Request r = new Request(obj.getInt("requestID"),
                     obj.getInt("quantity"),
@@ -137,6 +138,7 @@ public class GetRequestActivity extends AppCompatActivity {
                     r.setName(item.getName());
                 }
             }
+            System.out.println("NAME: " + r.getName());
             requestList.add(r);
         }
 

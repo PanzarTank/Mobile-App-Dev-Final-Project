@@ -2,86 +2,142 @@ package com.example.shelterconnect.controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.NumberPicker;
+import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.anjlab.android.iab.v3.BillingProcessor;
-import com.anjlab.android.iab.v3.TransactionDetails;
 import com.example.shelterconnect.R;
 import com.example.shelterconnect.controller.items.CreateItemActivity;
 import com.example.shelterconnect.controller.items.ReadItemActivity;
 import com.example.shelterconnect.controller.items.UpdateItemActivity;
+import com.example.shelterconnect.controller.requests.DonorGetRequestActivity;
+import com.example.shelterconnect.database.Api;
+import com.example.shelterconnect.database.RequestHandler;
+import com.example.shelterconnect.model.Donation;
+import com.example.shelterconnect.model.Request;
 import com.example.shelterconnect.util.Functions;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
-public class MakeDonationActivity extends AppCompatActivity implements BillingProcessor.IBillingHandler {
-    BillingProcessor bp;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
+public class MakeDonationActivity extends AppCompatActivity {
     private Button submit;
-    private EditText expDate;
-    //Donation donation = new Donation();
+    private Donation donation;
+    private Request sendingRequest;
+    private int requestIDInt;
+    private String email = "";
+    private int donorID = 0;
+    private Double amountToDonate;
+
+    private TextView dollarAmount;
+    private TextView quantityValue;
+    private SeekBar seekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_make_donation);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user != null){
+            this.email = user.getEmail();
+            PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_GET_DONORID_FROM_EMAIL+this.email, null, Api.CODE_GET_REQUEST);
+            request.execute();
+        }
+
+        Intent sendingIntent = getIntent();
+        this.sendingRequest = (Request) sendingIntent.getSerializableExtra("requestObject");
+        this.requestIDInt = this.sendingRequest.getRequestID();
+
+        dollarAmount = findViewById(R.id.dollarAmount);
+
+        TextView itemName = findViewById(R.id.itemName);
+        itemName.setText("Item Name: " + this.sendingRequest.getName());
+
+        NumberPicker numberPicker = findViewById(R.id.numberPicker);
+        numberPicker.setMaxValue(this.sendingRequest.getQuantity());
+
+
+
+        numberPicker.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
+            @Override
+            public void onValueChange(NumberPicker numberPicker, int currValue, int newValue) {
+                 amountToDonate = (newValue * sendingRequest.getItemPrice());
+                dollarAmount.setText("$"+amountToDonate.toString());
+            }
+        });
+
+        System.out.println("REQUEST NAME: " + this.sendingRequest.getName());
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
         toolbar.setTitle("MAKE A DONATION");
         toolbar.setSubtitle("");
 
-        bp = new BillingProcessor(this, null, this);
-
         submit = (Button) findViewById(R.id.btnSubmit);
-        expDate = (EditText) findViewById(R.id.editTextExpDate);
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                bp.purchase(MakeDonationActivity.this, "android.test.purchased");
+
+                if(donorID != 0 && sendingRequest.getRequestID() != 0 && amountToDonate != 0){
+
+                    HashMap<String, String> params = new HashMap<>();
+                    params.put("donorID", Integer.toString(donorID));
+                    params.put("requestID", Integer.toString(sendingRequest.getRequestID()));
+                    params.put("amountDonated", amountToDonate.toString());
+
+                    System.out.println(donorID);
+                    System.out.println(sendingRequest.getRequestID());
+                    System.out.println(amountToDonate);
+
+                    PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_CREATE_DONATION, params, Api.CODE_POST_REQUEST);
+                    request.execute();
+
+                    String newActive = "1";
+                    if((sendingRequest.getAmountRaised() + amountToDonate) < sendingRequest.getAmountNeeded()){
+                        newActive = "0";
+                    }
+
+                    HashMap<String, String> requestParams = new HashMap<>();
+                    requestParams.put("rID", Integer.toString(sendingRequest.getRequestID()));
+                    requestParams.put("itemID", Integer.toString(sendingRequest.getItemID()));
+                    requestParams.put("quantity", Integer.toString(sendingRequest.getQuantity()));
+                    double newAmount = sendingRequest.getAmountRaised() + amountToDonate;
+                    requestParams.put("amountRaised", Double.toString(newAmount));
+                    requestParams.put("amountNeeded", Double.toString(sendingRequest.getAmountNeeded()));
+                    requestParams.put("active", newActive);
+
+
+                    System.out.println("NEW AMOUNT " + newAmount);
+
+                    request = new PerformNetworkRequest(Api.URL_UPDATE_REQUEST, requestParams, Api.CODE_POST_REQUEST);
+                    request.execute();
+
+                } else if(donorID == 0){
+                    Toast.makeText(getApplicationContext(), "Cannot make donation - not logged in", Toast.LENGTH_LONG).show();
+                }
+
             }
         });
 
-        expDate.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.length() > 0 && (s.length() % 3) == 0) {
-                    final char c = s.charAt(s.length() - 1);
-                    if ('/' == c) {
-                        s.delete(s.length() - 1, s.length());
-                    }
-                }
-                if (s.length() > 0 && (s.length() % 3) == 0) {
-                    char c = s.charAt(s.length() - 1);
-                    if (Character.isDigit(c) && TextUtils.split(s.toString(), String.valueOf("/")).length <= 2) {
-                        s.insert(s.length() - 1, String.valueOf("/"));
-                    }
-                }
-            }
-
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-        });
     }
 
     @Override
@@ -139,38 +195,69 @@ public class MakeDonationActivity extends AppCompatActivity implements BillingPr
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onProductPurchased(@NonNull String productId, @Nullable TransactionDetails details) {
-        Toast.makeText(this, "Thanks for donating!", Toast.LENGTH_SHORT).show();
-    }
 
-    @Override
-    public void onPurchaseHistoryRestored() {
+    private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
+        String url;
+        HashMap<String, String> params;
+        int requestCode;
 
-    }
+        PerformNetworkRequest(String url, HashMap<String, String> params, int requestCode) {
+            this.url = url;
+            this.params = params;
+            this.requestCode = requestCode;
+        }
 
-    @Override
-    public void onBillingError(int errorCode, @Nullable Throwable error) {
-        Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
-    }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
 
-    @Override
-    public void onBillingInitialized() {
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+            try {
+                JSONObject object = new JSONObject(s);
 
-    }
+                if (!object.getBoolean("error")) {
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data);
+                    if(object.has("donorID") && !object.isNull("donorID")){
+                        donorID = object.getInt("donorID");
+                    }
+                    else if(object.has("donations") && !object.isNull("donations")) {
+
+                        Toast.makeText(getApplicationContext(), "Donation made!", Toast.LENGTH_LONG).show();
+
+                    } else if(object.has("requests") && !object.isNull("requests")){
+
+                        Toast.makeText(getApplicationContext(), "Request updated!", Toast.LENGTH_LONG).show();
+                        Intent myIntent = new Intent(MakeDonationActivity.this, DonorGetRequestActivity.class);
+                        startActivity(myIntent);
+
+                    }
+                } else{
+                    System.out.println(object.getString("message"));
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            RequestHandler requestHandler = new RequestHandler();
+
+            if (requestCode == Api.CODE_POST_REQUEST) {
+                return requestHandler.sendPostRequest(url, params);
+            }
+
+            if (requestCode == Api.CODE_GET_REQUEST) {
+                return requestHandler.sendGetRequest(url);
+            }
+
+            return null;
         }
     }
 
-    @Override
-    public void onDestroy() {
-        if (bp != null) {
-            bp.release();
-        }
-        super.onDestroy();
-    }
+
 }

@@ -1,67 +1,26 @@
 package com.example.shelterconnect.model;
 
-import java.util.Date;
-
 /**
  * Donation object to represent model
  * Created by daniel on 2/12/18.
  */
 public class Donation {
 
-    private int donationID;
-
-    private String creditCardNum;
-    private String expDate;
-    private int ccv;
     private int donorID;
     private int requestID;
     private double amountDonated;
+    private String donationDate;
 
-    public Donation(int donationID, String creditCardNum, String expDate, int ccv, int donorID, int requestID, double amountDonated) {
-        if (donationID < 0 || creditCardNum.length() != 16 || creditCardNum == null || expDate == null || ccv < 0 ||
-                donorID < 0 || requestID < 0 || amountDonated < 0 ) {
+    public Donation( int donorID, int requestID, double amountDonated, String donationDate) {
+        if ( donorID < 0 || requestID < 0 || amountDonated < 0) {
             throw new IllegalArgumentException("Invalid input. Try again");
         }
 
-        this.donationID = donationID;
-        this.creditCardNum = creditCardNum;
-        this.expDate = expDate;
-        this.ccv = ccv;
         this.donorID = donorID;
         this.requestID = requestID;
         this.amountDonated = amountDonated;
-    }
+        this.donationDate = donationDate;
 
-    public int getDonationID() {
-        return donationID;
-    }
-
-    public void setDonationID(int donationID) {
-        this.donationID = donationID;
-    }
-
-    public String getCreditCardNum() {
-        return creditCardNum;
-    }
-
-    public void setCreditCardNum(String creditCardNum) {
-        this.creditCardNum = creditCardNum;
-    }
-
-    public String getExpDate() {
-        return expDate;
-    }
-
-    public void setExpDate(String expDate) {
-        this.expDate = expDate;
-    }
-
-    public int getCcv() {
-        return ccv;
-    }
-
-    public void setCcv(int ccv) {
-        this.ccv = ccv;
     }
 
     public int getDonorID() {
@@ -86,5 +45,13 @@ public class Donation {
 
     public void setAmountDonated(double amountDonated) {
         this.amountDonated = amountDonated;
+    }
+
+    public String getDonationDate() {
+        return donationDate;
+    }
+
+    public void setDonationDate(String donationDate) {
+        this.donationDate = donationDate;
     }
 }

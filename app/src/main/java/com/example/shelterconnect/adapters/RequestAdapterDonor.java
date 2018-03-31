@@ -70,8 +70,6 @@ public class RequestAdapterDonor extends ArrayAdapter<Request> {
             final String itemNameLabel = (currRequest.getName());
             final int itemIDLabel = (currRequest.getItemID());
             final int quantityLabel = (currRequest.getQuantity());
-            //  TextView requestWorkerID = (TextView) currentView.findViewById(R.id.empID);
-            //  requestWorkerID.setText(Integer.toString(currRequest.getEmployeeID()));
 
             TextView requestActive = currentView.findViewById(R.id.act);
             requestActive.setText(Boolean.toString(currRequest.isActive()));

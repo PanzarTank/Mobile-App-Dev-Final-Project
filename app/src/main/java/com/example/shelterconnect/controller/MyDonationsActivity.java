@@ -1,18 +1,24 @@
 package com.example.shelterconnect.controller;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.View;
+import android.view.MenuItem;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.shelterconnect.R;
-import com.example.shelterconnect.adapters.RequestAdapter;
+import com.example.shelterconnect.adapters.DonationAdapter;
 import com.example.shelterconnect.database.Api;
 import com.example.shelterconnect.database.RequestHandler;
 import com.example.shelterconnect.model.Donation;
-import com.example.shelterconnect.model.Request;
+import com.example.shelterconnect.util.Functions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,30 +27,84 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MyDonationsActivity extends AppCompatActivity implements View.OnClickListener {
+public class MyDonationsActivity extends AppCompatActivity {
 
     private ArrayList<Donation> donations;
     private ListView donationList;
-    // Create a list adapter for Donations. For this activity, ListView, set adapter to the adapter I created.
-    // API call already in place, create front end to connect to back end, have this point to API.
+    private String email;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if(user!= null) {
+            this.email = user.getEmail();
+            PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_GET_DONATIONS_FOR_USER+this.email, null, Api.CODE_GET_REQUEST);
+            request.execute();
+        }
+
         setContentView(R.layout.activity_my_donations);
 
         this.donationList = (ListView) findViewById(R.id.listViewDonations);
-
         this.donations = new ArrayList<>();
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.donorToolbar);
+        setSupportActionBar(toolbar);
+        if(getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayShowTitleEnabled(false);
+        }
+        toolbar.setTitle("MAKE A DONATION");
+        toolbar.setSubtitle("");
+
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_items, menu);
+        getMenuInflater().inflate(R.menu.menu_donor, menu);
         return true;
     }
 
-    private void read() {
-        PerformNetworkRequest request = new PerformNetworkRequest(Api.URL_READ_EMPLOYEE, null, Api.CODE_GET_REQUEST);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.home) {
+
+            int userLevel = Functions.getUserLevel(this);
+
+            if (userLevel == -1) {
+                Toast.makeText(getApplicationContext(), "Please sign in to go to your homepage", Toast.LENGTH_SHORT).show();
+                Intent myIntent = new Intent(this, LoginActivity.class);
+                startActivity(myIntent);
+                return true;
+            } else if (userLevel == 0) {
+                Intent myIntent = new Intent(this, DonorHomeActivity.class);
+                startActivity(myIntent);
+                return true;
+            } else if (userLevel == 1) {
+                Intent myIntent = new Intent(this, WorkerHomeActivity.class);
+                startActivity(myIntent);
+                return true;
+            } else if (userLevel == 2) {
+                Intent myIntent = new Intent(this, OrganizerHomeActivity.class);
+                startActivity(myIntent);
+                return true;
+            }
+
+        } else if (id == R.id.logout) {
+
+            FirebaseAuth.getInstance().signOut();
+            getSharedPreferences("userLevel", Context.MODE_PRIVATE).edit().putString("position", "-1").apply();
+            Intent myIntent = new Intent(this, LoginActivity.class);
+            startActivity(myIntent);
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private class PerformNetworkRequest extends AsyncTask<Void, Void, String> {
@@ -96,35 +156,21 @@ public class MyDonationsActivity extends AppCompatActivity implements View.OnCli
 
     private void refreshItemList(JSONArray items) throws JSONException {
         donations.clear();
-        //String itemName = "";
 
         for (int i = 0; i < items.length(); i++) {
             JSONObject obj = items.getJSONObject(i);
 
             System.out.println(obj);
 
-            /* Attempt at matching id to name
-            for (Item item : itemList) {
-                if (obj.getInt("requestID") == item.getItemID()) {
-                    itemName = item.getName();
-                }
-            }
-            */
-
             donations.add(new Donation(
-                    obj.getInt("donationID"),
-                    obj.getString("creditCardNum"),
-                    obj.getString("expDate"),
-                    obj.getInt("ccv"),
                     obj.getInt("donorID"),
                     obj.getInt("requestID"),
-                    obj.getDouble("amountDonated")
+                    obj.getDouble("amountDonated"),
+                    obj.getString("donationDate")
             ));
         }
 
-    }
-
-    public void onClick(View v) {
-
+        DonationAdapter adapter = new DonationAdapter(this, this.donations);
+        this.donationList.setAdapter(adapter);
     }
 }

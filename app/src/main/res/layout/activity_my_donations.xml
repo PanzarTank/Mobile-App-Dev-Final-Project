@@ -7,7 +7,7 @@
     tools:context="com.example.shelterconnect.controller.MyDonationsActivity">
 
     <android.support.v7.widget.Toolbar
-        android:id="@+id/itemToolbar2"
+        android:id="@+id/donorToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"

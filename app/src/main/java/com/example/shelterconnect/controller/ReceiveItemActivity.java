@@ -59,7 +59,7 @@ public class ReceiveItemActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.itemToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-        toolbar.setTitle("RECIEVE ITEM");
+        toolbar.setTitle("RECEIVE ITEM");
         toolbar.setSubtitle("");
 
         this.numberPicker = findViewById(R.id.numberPicker);
@@ -187,7 +187,6 @@ public class ReceiveItemActivity extends AppCompatActivity {
                 if (!object.getBoolean("error") && update) {
 
                     Toast.makeText(getApplicationContext(), "updated request!", Toast.LENGTH_LONG).show();
-                    //refreshRequestList(object.getJSONArray("requests"));
 
                 } else if(!object.getBoolean("error") && !update){
 

@@ -31,7 +31,12 @@ public class Api {
     public static final String URL_UPDATE_DONOR = ROOT_URL + "updatedonor";
     public static final String URL_DELETE_DONOR = ROOT_URL + "deletedonor&id=";
 
+    public static final String URL_CREATE_DONATION = ROOT_URL + "createdonation";
+
     public static final String URL_READ_USERS = ROOT_URL + "getusers";
 
+    public static final String URL_GET_DONORID_FROM_EMAIL = ROOT_URL + "getDonorID&donorEmail=";
+
+    public static final String URL_GET_DONATIONS_FOR_USER = ROOT_URL + "getDonationsForUser&donorEmail=";
 
 }
