@@ -258,7 +258,7 @@ public class OrganizerHomeActivity extends AppCompatActivity implements View.OnC
         switch (view.getId()) {
             case R.id.viewItemsButton:
                 if (userLevel > 0) {
-                    startActivity(new Intent(this, OpenRequestsActivity.class));
+                    startActivity(new Intent(this, ReadItemActivity.class));
                 }
 
                 break;
